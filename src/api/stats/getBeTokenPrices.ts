@@ -1,0 +1,136 @@
+import { sonic } from '@beefyfinance/blockchain-addressbook/sonic';
+import { BigNumber } from 'bignumber.js';
+import { beSonicAbi } from '../../abis/sonic/beSonicAbi.ts';
+import { sonicStakingAbi } from '../../abis/sonic/sonicStakingAbi.ts';
+import type { PricesById } from '../../types/prices.ts';
+import { bigintRange } from '../../utils/array.ts';
+import { BIG_ONE, BIG_UNIT_18, BIG_ZERO } from '../../utils/big-number.ts';
+import { getLoggerFor } from '../../utils/logger/index.ts';
+import { isValidPrice } from '../../utils/prices.ts';
+import { fetchContract } from '../rpc/client.ts';
+
+const logger = getLoggerFor({ module: 'prices', component: 'be-tokens' });
+
+/** be* tokens that are worth exactly one of their underlying */
+const staticMap = {
+  beJOE: 'JOE',
+  beCAKE: 'Cake',
+  beVelo: 'BeVELO',
+};
+
+export async function getBeTokenPrices(tokenPrices: PricesById): Promise<PricesById> {
+  const staticPrices = Object.entries(staticMap).reduce<PricesById>((prices, [oracleId, source]) => {
+    const sourcePrice = tokenPrices[source];
+    if (!isValidPrice(sourcePrice)) {
+      logger.warn({ oracleId, source, price: sourcePrice }, 'missing underlying price');
+      return prices;
+    }
+
+    prices[oracleId] = sourcePrice;
+    return prices;
+  }, {});
+
+  const wsPrice = tokenPrices['WS'];
+  if (!isValidPrice(wsPrice)) {
+    logger.warn({ oracleId: 'beS', source: 'WS', price: wsPrice }, 'missing underlying price');
+    return staticPrices;
+  }
+
+  let beSPrice: number;
+  try {
+    beSPrice = await getBeSonicRedeemablePrice(wsPrice);
+  } catch (err) {
+    logger.warn({ oracleId: 'beS', err }, 'failed to read price per full share');
+    return staticPrices;
+  }
+
+  if (!isValidPrice(beSPrice)) {
+    logger.warn({ oracleId: 'beS', price: beSPrice }, 'invalid price calculated');
+    return staticPrices;
+  }
+
+  return {
+    ...staticPrices,
+    beS: beSPrice,
+  };
+}
+
+/** assumes redeemable at PPFS (i.e. no validator is slashed and not yet withdrawn from)  */
+async function getBeSonicRedeemablePrice(sonicPrice: number): Promise<number> {
+  const token = sonic.tokens.beS;
+  const contract = fetchContract(token.address, beSonicAbi, token.chainId);
+  const pricePerFullShare = await contract.read.getPricePerFullShare();
+  return new BigNumber(pricePerFullShare.toString(10)).times(sonicPrice).shiftedBy(-18).toNumber();
+}
+
+/** calculates PPFS from recoverable assets/totalSupply */
+async function getBeSonicPriceWhileWithdrawingSlashed(sonicPrice: number): Promise<number> {
+  const token = sonic.tokens.beS;
+  const beContract = fetchContract(token.address, beSonicAbi, token.chainId);
+  const [validatorsLength, totalSupply, pricePerFullShare, lockedProfit] = await Promise.all([
+    beContract.read.validatorsLength(),
+    beContract.read.totalSupply(),
+    beContract.read.getPricePerFullShare(),
+    beContract.read.lockedProfit(),
+  ]);
+  const validators = await Promise.all(bigintRange(validatorsLength).map(i => beContract.read.validatorByIndex([i])));
+
+  const stakingContract = fetchContract('0xFC00FACE00000000000000000000000000000000', sonicStakingAbi, token.chainId);
+
+  const validatorsWithStatus = await Promise.all(
+    validators.map(async v => {
+      const [isSlashed, refundRatio] = await Promise.all([
+        stakingContract.read.isSlashed([v.id]),
+        stakingContract.read.slashingRefundRatio([v.id]),
+      ]);
+
+      return {
+        ...v,
+        isSlashed,
+        refundRatio,
+        assets: v.delegations + v.slashedDelegations,
+      };
+    })
+  );
+
+  // Use PPFS*wS price only if there are no slashed validators
+  const slashedValidators = validatorsWithStatus.filter(v => v.assets > 0n && v.isSlashed);
+  if (slashedValidators.length === 0) {
+    return new BigNumber(pricePerFullShare.toString(10)).times(sonicPrice).shiftedBy(-18).toNumber();
+  }
+
+  const totalAssets = validatorsWithStatus
+    .reduce((acc, v) => {
+      if (v.assets === 0n) {
+        return acc;
+      }
+
+      const amount = new BigNumber(v.assets.toString(10));
+      const penalty = getPenalty(amount, v.isSlashed, new BigNumber(v.refundRatio.toString(10)));
+      return acc.plus(amount).minus(penalty);
+    }, BIG_ZERO)
+    .minus(lockedProfit.toString(10));
+
+  // Math.mulDiv(x, y, denominator, 0)
+  const x = BIG_UNIT_18;
+  const y = totalAssets.plus(BIG_ONE);
+  const denominator = new BigNumber(totalSupply.toString(10)).plus(BIG_ONE);
+  const newPricePerFullShare = x.multipliedBy(y).dividedToIntegerBy(denominator);
+  return newPricePerFullShare.times(sonicPrice).shiftedBy(-18).toNumber();
+}
+
+function getPenalty(amount: BigNumber, isCheater: boolean, refundRatio: BigNumber): BigNumber {
+  // if (!isCheater || refundRatio >= Decimal.unit())
+  if (!isCheater || refundRatio.gte(BIG_UNIT_18)) {
+    return BIG_ZERO;
+  }
+
+  // penalty = (amount * (Decimal.unit() - refundRatio)) / Decimal.unit() + 1;
+  const penalty = amount.multipliedBy(BIG_UNIT_18.minus(refundRatio)).dividedToIntegerBy(BIG_UNIT_18).plus(BIG_ONE);
+
+  if (penalty.gt(amount)) {
+    return BIG_ZERO;
+  }
+
+  return penalty;
+}

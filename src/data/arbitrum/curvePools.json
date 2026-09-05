@@ -1,0 +1,641 @@
+[
+  {
+    "name": "curve-arb-usdc-eure",
+    "pool": "0x590f7e2b211Fa5Ff7840Dd3c425B543363797701",
+    "gauge": "0x576673a39CCa0F0E4333aC0617638acEbF15536E",
+    "convex": false,
+    "rewards": [
+      {
+        "token": "0x0c06cCF38114ddfc35e07427B9424adcca9F44F8",
+        "oracleId": "EURe"
+      }
+    ],
+    "tokens": [
+      {
+        "oracleId": "USDC",
+        "decimals": "1e6"
+      },
+      {
+        "oracleId": "EURe",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-usde-usdx",
+    "pool": "0x096A8865367686290639bc50bF8D85C0110d9Fea",
+    "gauge": "0x99178264ec6b9de40689eE4F2f561cA3885a4BD2",
+    "convex": true,
+    "tokens": [
+      {
+        "oracleId": "USDe",
+        "decimals": "1e18"
+      },
+      {
+        "oracleId": "USDx",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-dlcbtc",
+    "pool": "0xe957cE03cCdd88f02ed8b05C9a3A28ABEf38514A",
+    "gauge": "0x02b8e750E68cb648dB2c2ac4BBb47A10A5c12588",
+    "rewards": [
+      {
+        "token": "0x050C24dBf1eEc17babE5fc585F06116A259CC77A",
+        "oracleId": "dlcBTC",
+        "decimals": "1e8"
+      }
+    ],
+    "getDy": ["v1", 1, 0],
+    "tokens": [
+      {
+        "oracleId": "WBTC",
+        "decimals": "1e8"
+      },
+      {
+        "oracleId": "dlcBTC",
+        "decimals": "1e8"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-knox-eusd-v2",
+    "pool": "0x86EA1191a219989d2dA3a85c949a12A92f8ED3Db",
+    "gauge": "0x8d4Fc7cCB459722Fdc675BfBe6Fa52540bb70A4B",
+    "convex": true,
+    "rewards": [
+      {
+        "token": "0xCa5Ca9083702c56b481D1eec86F1776FDbd2e594",
+        "oracleId": "RSR"
+      },
+      {
+        "token": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "oracleId": "ARB"
+      }
+    ],
+    "tokens": [
+      {
+        "oracleId": "KNOX",
+        "decimals": "1e18"
+      },
+      {
+        "oracleId": "eUSD",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-eth+-eth-v2",
+    "pool": "0x1Fb84Fa6D252762e8367eA607A6586E09dceBe3D",
+    "gauge": "0x6E9a99F8b3e22c3Ee81d888d7e29293E939B6f9C",
+    "convex": true,
+    "rewards": [
+      {
+        "token": "0xCa5Ca9083702c56b481D1eec86F1776FDbd2e594",
+        "oracleId": "RSR"
+      },
+      {
+        "token": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "oracleId": "ARB"
+      }
+    ],
+    "tokens": [
+      {
+        "oracleId": "ETH+",
+        "decimals": "1e18"
+      },
+      {
+        "oracleId": "ETH",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-tbtc-ng",
+    "pool": "0x186cF879186986A20aADFb7eAD50e3C20cb26CeC",
+    "gauge": "0xB7e23A438C9cad2575d3C048248A943a7a03f3fA",
+    "convex": true,
+    "sdSideCar": "0xa24bf33657ed905246E3cDdE9c3B0567DB63403f",
+    "rewards": [
+      {
+        "token": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "oracleId": "ARB"
+      }
+    ],
+    "tokens": [
+      {
+        "oracleId": "WBTC",
+        "decimals": "1e8"
+      },
+      {
+        "oracleId": "tBTC",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-trirsr",
+    "pool": "0x45B47fE1bed067de6B4b89e0285E6B571A64c57C",
+    "gauge": "0xF7205c995b7E5f8F755ecbe7eEbb92eC742633C9",
+    "rewards": [
+      {
+        "token": "0xCa5Ca9083702c56b481D1eec86F1776FDbd2e594",
+        "oracleId": "RSR"
+      },
+      {
+        "token": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "oracleId": "ARB"
+      }
+    ],
+    "tokens": [
+      {
+        "oracleId": "ETH+",
+        "decimals": "1e18"
+      },
+      {
+        "oracleId": "eUSD",
+        "decimals": "1e18"
+      },
+      {
+        "oracleId": "RSR",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-eusd-usdc",
+    "pool": "0x93a416206B4ae3204cFE539edfeE6BC05a62963e",
+    "gauge": "0xad85FB8A5eD9E2f338d2798A9eEF176D31cA6A57",
+    "convex": true,
+    "rewards": [
+      {
+        "token": "0xCa5Ca9083702c56b481D1eec86F1776FDbd2e594",
+        "oracleId": "RSR"
+      },
+      {
+        "token": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "oracleId": "ARB"
+      }
+    ],
+    "tokens": [
+      {
+        "oracleId": "eUSD",
+        "decimals": "1e18"
+      },
+      {
+        "oracleId": "USDC",
+        "decimals": "1e6"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-eusd-crvusd",
+    "pool": "0x67D11005AF05Bb1e9fDb1CFc261C23DE3E1055a1",
+    "gauge": "0x71D97aEEEfe4715E05354D009B8B7a77c325CC2d",
+    "rewards": [
+      {
+        "token": "0xCa5Ca9083702c56b481D1eec86F1776FDbd2e594",
+        "oracleId": "RSR"
+      },
+      {
+        "token": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "oracleId": "ARB"
+      }
+    ],
+    "tokens": [
+      {
+        "oracleId": "eUSD",
+        "decimals": "1e18"
+      },
+      {
+        "oracleId": "crvUSD",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-eth+-eth",
+    "pool": "0x95F425c7d730Eb7673fca272c2c305f48Ed546c3",
+    "gauge": "0xB224cf7c17dB373EceF550CF957B8a4dD40C8109",
+    "rewards": [
+      {
+        "token": "0xCa5Ca9083702c56b481D1eec86F1776FDbd2e594",
+        "oracleId": "RSR"
+      },
+      {
+        "token": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "oracleId": "ARB"
+      }
+    ],
+    "tokens": [
+      {
+        "oracleId": "ETH+",
+        "decimals": "1e18"
+      },
+      {
+        "oracleId": "ETH",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-usdc-usdm",
+    "pool": "0x4bD135524897333bec344e50ddD85126554E58B4",
+    "gauge": "0xbdBb71914DdB650F96449b54d2CA15132Be56Aca",
+    "rewards": [
+      {
+        "token": "0x59D9356E565Ab3A36dD77763Fc0d87fEaf85508C",
+        "oracleId": "USDM"
+      },
+      {
+        "token": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "oracleId": "ARB"
+      }
+    ],
+    "getDy": ["v1", 1, 0],
+    "tokens": [
+      {
+        "oracleId": "USDC",
+        "decimals": "1e6"
+      },
+      {
+        "oracleId": "USDM",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-usd+usdt+",
+    "pool": "0x1446999B0b0E4f7aDA6Ee73f2Ae12a2cfdc5D9E7",
+    "gauge": "0xd68089D9dAa2da7888B7Ef54158480e09ecC3580",
+    "convex": true,
+    "getDy": ["v1", 1, 0],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "arbUSD+",
+        "decimals": "1e6"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "arbUSDT+",
+        "decimals": "1e6"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-tricrvarb",
+    "pool": "0x845C8bc94610807fCbaB5dd2bc7aC9DAbaFf3c55",
+    "gauge": "0xB08FEf57bFcc5f7bF0EF69C0c090849d497C8F8A",
+    "convex": true,
+    "rewards": [
+      {
+        "token": "0x498Bf2B1e120FeD3ad3D42EA2165E9b73f99C1e5",
+        "oracleId": "crvUSD"
+      },
+      {
+        "token": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "oracleId": "ARB"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "crvUSD",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "ARB",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "CRV",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-crvusd-mim",
+    "pool": "0x4070C044ABc8d9d22447DFE4B032405970878d06",
+    "gauge": "0xd2cE52833a2a70Cf6255c6374Bc44525a0FB93D8",
+    "convex": true,
+    "rewards": [
+      {
+        "token": "0x498Bf2B1e120FeD3ad3D42EA2165E9b73f99C1e5",
+        "oracleId": "crvUSD"
+      },
+      {
+        "token": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "oracleId": "ARB"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "crvUSD",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "MIM",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-crvusd-frax",
+    "pool": "0x2FE7AE43591E534C256A1594D326e5779E302Ff4",
+    "gauge": "0x059E0db6BF882f5fe680dc5409C7adeB99753736",
+    "convex": true,
+    "rewards": [
+      {
+        "token": "0x498Bf2B1e120FeD3ad3D42EA2165E9b73f99C1e5",
+        "oracleId": "crvUSD"
+      },
+      {
+        "token": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "oracleId": "ARB"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "crvUSD",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "FRAX",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-crvusd-usdc",
+    "pool": "0xec090cf6DD891D2d014beA6edAda6e05E025D93d",
+    "gauge": "0xb12600D06753Df7c706225c901E6C1346A654D0b",
+    "convex": true,
+    "rewards": [
+      {
+        "token": "0x498Bf2B1e120FeD3ad3D42EA2165E9b73f99C1e5",
+        "oracleId": "crvUSD"
+      },
+      {
+        "token": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "oracleId": "ARB"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "crvUSD",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "USDC",
+        "decimals": "1e6"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-crvusd-usdc.e",
+    "pool": "0x3aDf984c937FA6846E5a24E0A68521Bdaf767cE1",
+    "gauge": "0x7AE49935b8BC11023e5b04d86a44055f999fca31",
+    "convex": true,
+    "rewards": [
+      {
+        "token": "0x498Bf2B1e120FeD3ad3D42EA2165E9b73f99C1e5",
+        "oracleId": "crvUSD"
+      },
+      {
+        "token": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "oracleId": "ARB"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "crvUSD",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "arbUSDCe",
+        "decimals": "1e6"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-crvusd-usdt",
+    "pool": "0x73aF1150F265419Ef8a5DB41908B700C32D49135",
+    "gauge": "0x030786336Bc7833D4325404A25FE451e4fde9807",
+    "convex": true,
+    "rewards": [
+      {
+        "token": "0x498Bf2B1e120FeD3ad3D42EA2165E9b73f99C1e5",
+        "oracleId": "crvUSD"
+      },
+      {
+        "token": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "oracleId": "ARB"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "crvUSD",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "USDT",
+        "decimals": "1e6"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-tricrypto-crvusd",
+    "pool": "0x82670f35306253222F8a165869B28c64739ac62e",
+    "gauge": "0x23194e30E54d713C6954ebCD2d5bdCD0171eE2C4",
+    "convex": true,
+    "rewards": [
+      {
+        "token": "0x498Bf2B1e120FeD3ad3D42EA2165E9b73f99C1e5",
+        "oracleId": "crvUSD"
+      },
+      {
+        "token": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "oracleId": "ARB"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "crvUSD",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "WBTC",
+        "decimals": "1e8"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "ETH",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-fethxeth",
+    "pool": "0xF7Fed8Ae0c5B78c19Aadd68b700696933B0Cefd9",
+    "gauge": "0x5839337bf070Fea56595A5027e83Cd7126b23884",
+    "convex": true,
+    "rewards": [
+      {
+        "token": "0x179F38f78346F5942E95C5C59CB1da7F55Cf7CAd",
+        "oracleId": "FXN"
+      }
+    ],
+    "tokens": [
+      {
+        "oracleId": "fETH",
+        "decimals": "1e18"
+      },
+      {
+        "oracleId": "xETH",
+        "decimals": "1e18"
+      },
+      {
+        "oracleId": "ETH",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-usd+fraxbp",
+    "pool": "0xb34a7d1444a707349Bc7b981B7F2E1f20F81F013",
+    "gauge": "0x4645e6476D3A5595Be9Efd39426cc10586a8393D",
+    "convex": true,
+    "getDy": ["v1", 0, 2, "USDC"],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "arbUSD+",
+        "decimals": "1e6"
+      },
+      {
+        "basePool": "curve-arb-f-fraxbp",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-tbtc",
+    "pool": "0x755D6688AD74661Add2FB29212ef9153D40fcA46",
+    "gauge": "0xd6DAcdCB438f048cF90e53415872cDb3FCC95421",
+    "convex": true,
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "WBTC",
+        "decimals": "1e8"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "tBTC",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-f-wsteth",
+    "pool": "0x6eB2dc694eB516B16Dc9FBc678C60052BbdD7d80",
+    "token": "0xDbcD16e622c95AcB2650b38eC799f76BFC557a0b",
+    "gauge": "0x098EF55011B6B8c99845128114A9D9159777d697",
+    "rewards": [
+      {
+        "token": "0x13Ad51ed4F1B7e9Dc168d8a00cB3f4dDD85EfA60",
+        "oracleId": "LDO"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "WETH",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "wstETH",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-f-fraxbp",
+    "pool": "0xC9B8a3FDECB9D5b218d02555a8Baf332E5B740d5",
+    "token": "0xC9B8a3FDECB9D5b218d02555a8Baf332E5B740d5",
+    "gauge": "0x95285Ea6fF14F80A2fD3989a6bAb993Bd6b5fA13",
+    "convex": true,
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "FRAX",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "arbUSDCe",
+        "decimals": "1e6"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-mim",
+    "pool": "0x30dF229cefa463e991e29D42DB0bae2e122B2AC7",
+    "rewards": [],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "MIM",
+        "decimals": "1e18"
+      },
+      {
+        "basePool": "curve-arb-2pool",
+        "oracle": "lps",
+        "oracleId": "curve-arb-2pool",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "curve-arb-2pool",
+    "pool": "0x7f90122BF0700F9E7e1F688fe926940E8839F353",
+    "gauge": "0xCE5F24B7A95e9cBa7df4B54E911B4A3Dc8CDAf6f",
+    "convex": true,
+    "rewards": [
+      {
+        "token": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "oracleId": "ARB"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "arbUSDCe",
+        "decimals": "1e6"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "USDT",
+        "decimals": "1e6"
+      }
+    ]
+  }
+]

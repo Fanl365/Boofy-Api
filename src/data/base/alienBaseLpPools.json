@@ -1,0 +1,22 @@
+[
+  {
+    "name": "alienbase-alb-weth",
+    "address": "0xd79Ef386f26E40B5e60e4aeB324F2678F6eBbF49",
+    "decimals": "1e18",
+    "boofyFee": 0.095,
+    "poolId": 1,
+    "chainId": 8453,
+    "lp0": {
+      "address": "0x1dd2d631c92b1aCdFCDd51A0F7145A50130050C4",
+      "oracle": "tokens",
+      "oracleId": "ALB",
+      "decimals": "1e18"
+    },
+    "lp1": {
+      "address": "0x4200000000000000000000000000000000000006",
+      "oracle": "tokens",
+      "oracleId": "WETH",
+      "decimals": "1e18"
+    }
+  }
+]

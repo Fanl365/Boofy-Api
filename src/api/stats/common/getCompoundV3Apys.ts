@@ -1,0 +1,144 @@
+import type { ChainId } from '@beefyfinance/blockchain-addressbook';
+import type { BigNumber } from 'bignumber.js';
+import type { Abi } from 'viem';
+import cv3Token from '../../../abis/cv3Token.ts';
+import { isBigNumberish, toBigNumber } from '../../../utils/big-number.ts';
+import { fetchPrice } from '../../../utils/fetchPrice.ts';
+import getBlockTime from '../../../utils/getBlockTime.ts';
+import { getLoggerFor } from '../../../utils/logger/index.ts';
+import { fetchContract, fetchNoMulticallContract } from '../../rpc/client.ts';
+import { getApyBreakdown } from './getApyBreakdownNew.ts';
+
+const logger = getLoggerFor({ module: 'apy', component: 'compound' });
+
+const SECONDS_PER_YEAR = 31536000;
+
+const toBigNumbers = (results: unknown[], call: string): BigNumber[] =>
+  results.map(result => {
+    if (!isBigNumberish(result)) {
+      throw new Error(`Unexpected non-numeric result from ${call}`);
+    }
+    return toBigNumber(result);
+  });
+
+const getCompoundV3ApyData = async (params: CompoundV3ApyParams) => {
+  const poolsData = await getPoolsData(params);
+
+  const { supplyApys, supplyCompApys } = await getPoolsApys(params, poolsData);
+
+  if (params.log) {
+    params.pools.forEach((pool, i) =>
+      logger.debug(
+        { pool: pool.name, supplyApy: supplyApys[i].valueOf(), supplyCompApy: supplyCompApys[i].valueOf() },
+        'pool apy'
+      )
+    );
+  }
+
+  return getApyBreakdown(
+    params.pools.map((p, i) => ({
+      vaultId: p.name,
+      lending: supplyApys[i],
+      vault: supplyCompApys[i],
+    }))
+  );
+};
+
+const getPoolsApys = async (params: CompoundV3ApyParams, data: PoolsData) => {
+  //const compDecimals = params.compDecimals ?? '1e18';
+  const compOracle = params.compOracle ?? 'tokens';
+  const compPrice = await fetchPrice({ oracle: compOracle, id: params.compOracleId });
+  const secondsPerBlock = params.secondsPerBlock ?? (await getBlockTime(params.chainId));
+  const BLOCKS_PER_YEAR = SECONDS_PER_YEAR / Number(secondsPerBlock);
+  const trackingIndexScale = 1000000000000000;
+
+  const supplyApys = data.supplyRates.map(v => v.times(BLOCKS_PER_YEAR).div('1e18'));
+
+  const annualCompSupplyInUsd = data.compSupplySpeeds.map(v =>
+    v.times(BLOCKS_PER_YEAR).div(trackingIndexScale).times(compPrice)
+  );
+
+  const totalSuppliesInUsd = data.totalSupplies.map((v, i) =>
+    v.div(params.pools[i].decimals).times(data.tokenPrices[i] ?? 0)
+  );
+
+  const supplyCompApys = annualCompSupplyInUsd.map((v, i) => v.div(totalSuppliesInUsd[i]));
+
+  return {
+    supplyApys,
+    supplyCompApys,
+  };
+};
+
+const getPoolsData = async (params: CompoundV3ApyParams): Promise<PoolsData> => {
+  const cTokenAbi = params.cTokenAbi ?? cv3Token;
+
+  const supplyRateCalls = [];
+  const compSupplySpeedCalls = [];
+  const totalSupplyCalls = [];
+
+  let pricePromises = params.pools.map(pool => fetchPrice({ oracle: pool.oracle, id: pool.oracleId }));
+
+  for (let i = 0; i < params.pools.length; i++) {
+    const pool = params.pools[i];
+    const cTokenContract = fetchContract(pool.cToken, cTokenAbi, params.chainId);
+    const cToken = fetchNoMulticallContract(pool.cToken, cTokenAbi, params.chainId);
+    const utilizationRate = await cToken.read.getUtilization();
+    supplyRateCalls.push(cTokenContract.read.getSupplyRate([utilizationRate]));
+    compSupplySpeedCalls.push(cTokenContract.read.baseTrackingSupplySpeed());
+    totalSupplyCalls.push(cTokenContract.read.totalSupply());
+  }
+
+  const res = await Promise.all([
+    Promise.all(supplyRateCalls),
+    Promise.all(compSupplySpeedCalls),
+    Promise.all(totalSupplyCalls),
+    Promise.all(pricePromises),
+  ]);
+
+  const supplyRates = toBigNumbers(res[0], 'getSupplyRate');
+  const compSupplySpeeds = toBigNumbers(res[1], 'baseTrackingSupplySpeed');
+  const totalSupplies = toBigNumbers(res[2], 'totalSupply');
+
+  const tokenPrices = res[3];
+
+  return {
+    tokenPrices,
+    supplyRates,
+    compSupplySpeeds,
+    totalSupplies,
+  };
+};
+
+export interface PoolsData {
+  tokenPrices: number[];
+  supplyRates: BigNumber[];
+  compSupplySpeeds: BigNumber[];
+  totalSupplies: BigNumber[];
+}
+
+export interface CompoundV3Pool {
+  name: string;
+  cToken: string;
+  oracle: string;
+  oracleId: string;
+  decimals: string;
+  platform?: string;
+  depositFee?: number;
+  boofyFee?: number;
+}
+
+export interface CompoundV3ApyParams {
+  chainId: ChainId;
+  comptrollerAbi?: Abi;
+  compOracle?: string;
+  compOracleId: string;
+  compDecimals?: string;
+  cTokenAbi?: Abi;
+  pools: CompoundV3Pool[];
+  secondsPerBlock?: number;
+  liquidityProviderFee?: number;
+  log?: boolean;
+}
+
+export default getCompoundV3ApyData;

@@ -1,0 +1,372 @@
+[
+  {
+    "name": "beets-sonic-silo-super-sonic",
+    "address": "0xC5954B1B9Df8a0c0B7788d2cc2Bc18D4BaE9b0C2",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0xC216ff0c4D9E030330958e6A6D6d5ed8d0B38442",
+    "vaultPoolId": "0xc5954b1b9df8a0c0b7788d2cc2bc18d4bae9b0c2000200000000000000000099",
+    "decimals": "1e18",
+    "rewards": [
+      {
+        "newGauge": true,
+        "stream": "0xC216ff0c4D9E030330958e6A6D6d5ed8d0B38442",
+        "oracleId": "BAL"
+      },
+      {
+        "stream": "0xC216ff0c4D9E030330958e6A6D6d5ed8d0B38442",
+        "rewardToken": "0x2D0E0814E62D80056181F5cd932274405966e4f0",
+        "oracleId": "BEETS"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "WS",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "SILO",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "beets-sonic-sonic-quartet-audition-act-ii",
+    "address": "0xbd4a2ecdcd7acb0d2b20744AC4Cc1368Dd8fdC41",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0xDbc37b018D4d0536e624fFd3F338F218223a9b61",
+    "vaultPoolId": "0xbd4a2ecdcd7acb0d2b20744ac4cc1368dd8fdc410001000000000000000000a8",
+    "decimals": "1e18",
+    "rewards": [
+      {
+        "newGauge": true,
+        "stream": "0xDbc37b018D4d0536e624fFd3F338F218223a9b61",
+        "oracleId": "BAL"
+      },
+      {
+        "stream": "0xDbc37b018D4d0536e624fFd3F338F218223a9b61",
+        "rewardToken": "0x2D0E0814E62D80056181F5cd932274405966e4f0",
+        "oracleId": "BEETS"
+      },
+      {
+        "stream": "0xDbc37b018D4d0536e624fFd3F338F218223a9b61",
+        "rewardToken": "0xE51EE9868C1f0d6cd968A8B8C8376Dc2991BFE44",
+        "oracleId": "stS"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "scETH",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "scBTC",
+        "decimals": "1e8"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "scUSD",
+        "decimals": "1e6"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "stS",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "beets-sonic-concentrated-ringing-notes",
+    "address": "0xE7734B495a552aB6f4C78406E672cCa7175181e1",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0xb0406A4e9bA2A7932EC537AE44128230BE305768",
+    "vaultPoolId": "0xe7734b495a552ab6f4c78406e672cca7175181e10002000000000000000000c5",
+    "decimals": "1e18",
+    "rewards": [
+      {
+        "newGauge": true,
+        "stream": "0xb0406A4e9bA2A7932EC537AE44128230BE305768",
+        "oracleId": "BAL"
+      },
+      {
+        "stream": "0xb0406A4e9bA2A7932EC537AE44128230BE305768",
+        "rewardToken": "0x2D0E0814E62D80056181F5cd932274405966e4f0",
+        "oracleId": "BEETS"
+      },
+      {
+        "stream": "0xb0406A4e9bA2A7932EC537AE44128230BE305768",
+        "rewardToken": "0xE51EE9868C1f0d6cd968A8B8C8376Dc2991BFE44",
+        "oracleId": "stS"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "scETH",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "scUSD",
+        "decimals": "1e6"
+      }
+    ]
+  },
+  {
+    "name": "beets-sonic-smooth-eth-sailing",
+    "address": "0x5485C26921E28830fBd7469442C0eDAD0E27E01C",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0x6b913C7915479ab4f409f209f73ce44e467366AC",
+    "vaultPoolId": "0x5485c26921e28830fbd7469442c0edad0e27e01c0002000000000000000000c7",
+    "decimals": "1e18",
+    "rewards": [
+      {
+        "newGauge": true,
+        "stream": "0x6b913C7915479ab4f409f209f73ce44e467366AC",
+        "oracleId": "BAL"
+      },
+      {
+        "stream": "0x6b913C7915479ab4f409f209f73ce44e467366AC",
+        "rewardToken": "0x2D0E0814E62D80056181F5cd932274405966e4f0",
+        "oracleId": "BEETS"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "sUSDCe",
+        "decimals": "1e6"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "WETH",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "beets-sonic-staked-and-volatile-ringing-melodies",
+    "address": "0xCf5d1864AB01B50c6E94adDe80d5Ec264c93F491",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0x5b815F2a03bb579858AacBE2325C25b2c1aac9bC",
+    "vaultPoolId": "0xcf5d1864ab01b50c6e94adde80d5ec264c93f4910002000000000000000000bb",
+    "decimals": "1e18",
+    "rewards": [
+      {
+        "newGauge": true,
+        "stream": "0x5b815F2a03bb579858AacBE2325C25b2c1aac9bC",
+        "oracleId": "BAL"
+      },
+      {
+        "stream": "0x5b815F2a03bb579858AacBE2325C25b2c1aac9bC",
+        "rewardToken": "0x2D0E0814E62D80056181F5cd932274405966e4f0",
+        "oracleId": "BEETS"
+      },
+      {
+        "stream": "0x5b815F2a03bb579858AacBE2325C25b2c1aac9bC",
+        "rewardToken": "0xE51EE9868C1f0d6cd968A8B8C8376Dc2991BFE44",
+        "oracleId": "stS"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "scUSD",
+        "decimals": "1e6"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "stS",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "beets-sonic-echoes-of-ether",
+    "address": "0xE54DD58a6d4e04687f2034dd4dDAb49da55F8afF",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0x8828a6e3166cac78F3C90A5b5bf17618BDAf1Deb",
+    "vaultPoolId": "0xe54dd58a6d4e04687f2034dd4ddab49da55f8aff00000000000000000000007c",
+    "composable": true,
+    "bptIndex": 2,
+    "decimals": "1e18",
+    "rewards": [
+      {
+        "newGauge": true,
+        "stream": "0x8828a6e3166cac78F3C90A5b5bf17618BDAf1Deb",
+        "oracleId": "BAL"
+      },
+      {
+        "stream": "0x8828a6e3166cac78F3C90A5b5bf17618BDAf1Deb",
+        "rewardToken": "0x2D0E0814E62D80056181F5cd932274405966e4f0",
+        "oracleId": "BEETS"
+      },
+      {
+        "stream": "0x8828a6e3166cac78F3C90A5b5bf17618BDAf1Deb",
+        "rewardToken": "0xE5DA20F15420aD15DE0fa650600aFc998bbE3955",
+        "oracleId": "stS"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "scETH",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "WETH",
+        "decimals": "1e18"
+      },
+      {
+        "oracleId": "BPTToken"
+      }
+    ]
+  },
+  {
+    "name": "beets-sonic-staked-sonic-circle-concerto",
+    "address": "0x713FB5036dC70012588d77a5B066f1Dd05c712d7",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0xb3Bf2c247A599DFcEf06791b1668Fe9456677923",
+    "vaultPoolId": "0x713fb5036dc70012588d77a5b066f1dd05c712d7000200000000000000000041",
+    "decimals": "1e18",
+    "rewards": [
+      {
+        "newGauge": true,
+        "stream": "0xb3Bf2c247A599DFcEf06791b1668Fe9456677923",
+        "oracleId": "BAL"
+      },
+      {
+        "stream": "0xb3Bf2c247A599DFcEf06791b1668Fe9456677923",
+        "rewardToken": "0x2D0E0814E62D80056181F5cd932274405966e4f0",
+        "oracleId": "BEETS"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "sUSDCe",
+        "decimals": "1e6"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "stS",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "beets-sonic-staked-sonic-symphony",
+    "address": "0x374641076B68371e69D03C417DAc3E5F236c32FA",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0x8476F3A8DA52092e7835167AFe27835dC171C133",
+    "vaultPoolId": "0x374641076b68371e69d03c417dac3e5f236c32fa000000000000000000000006",
+    "composable": true,
+    "bptIndex": 1,
+    "decimals": "1e18",
+    "rewards": [
+      {
+        "newGauge": true,
+        "stream": "0x8476F3A8DA52092e7835167AFe27835dC171C133",
+        "oracleId": "BAL"
+      },
+      {
+        "stream": "0x8476F3A8DA52092e7835167AFe27835dC171C133",
+        "rewardToken": "0x2D0E0814E62D80056181F5cd932274405966e4f0",
+        "oracleId": "BEETS"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "WS",
+        "decimals": "1e18"
+      },
+      {
+        "oracleId": "BPTToken"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "stS",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "beets-sonic-ringing-stable-beets",
+    "address": "0xCd4D2b142235D5650fFA6A38787eD0b7d7A51c0C",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0x33B29bcf17e866A35941e07CbAd54f1807B337f5",
+    "vaultPoolId": "0xcd4d2b142235d5650ffa6a38787ed0b7d7a51c0c000000000000000000000037",
+    "composable": true,
+    "bptIndex": 1,
+    "decimals": "1e18",
+    "rewards": [
+      {
+        "newGauge": true,
+        "stream": "0x33B29bcf17e866A35941e07CbAd54f1807B337f5",
+        "oracleId": "BAL"
+      },
+      {
+        "stream": "0x33B29bcf17e866A35941e07CbAd54f1807B337f5",
+        "rewardToken": "0x2D0E0814E62D80056181F5cd932274405966e4f0",
+        "oracleId": "BEETS"
+      },
+      {
+        "stream": "0x33B29bcf17e866A35941e07CbAd54f1807B337f5",
+        "rewardToken": "0xE5DA20F15420aD15DE0fa650600aFc998bbE3955",
+        "oracleId": "stS"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "sUSDCe",
+        "decimals": "1e6"
+      },
+      {
+        "oracleId": "BPTToken"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "scUSD",
+        "decimals": "1e6"
+      }
+    ]
+  },
+  {
+    "name": "beets-sonic-put-a-ring-on-it",
+    "address": "0x25ca5451CD5a50AB1d324B5E64F32C0799661891",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0xa472438718Fe7785107fCbE584d39183a6420D36",
+    "vaultPoolId": "0x25ca5451cd5a50ab1d324b5e64f32c0799661891000200000000000000000018",
+    "decimals": "1e18",
+    "rewards": [
+      {
+        "newGauge": true,
+        "stream": "0xa472438718Fe7785107fCbE584d39183a6420D36",
+        "oracleId": "BAL"
+      },
+      {
+        "stream": "0xa472438718Fe7785107fCbE584d39183a6420D36",
+        "rewardToken": "0x2D0E0814E62D80056181F5cd932274405966e4f0",
+        "oracleId": "BEETS"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "scUSD",
+        "decimals": "1e6"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "stS",
+        "decimals": "1e18"
+      }
+    ]
+  }
+]

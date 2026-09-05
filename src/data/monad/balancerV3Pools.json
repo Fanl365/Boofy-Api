@@ -1,0 +1,132 @@
+[
+  {
+    "name": "balancerv3-monad-usdt0-ausd-usdc",
+    "address": "0x2DAA146dfB7EAef0038F9F15B2EC1e4DE003f72b",
+    "gauge": "0x0000000000000000000000000000000000000000",
+    "merkl": true,
+    "decimals": "1e18",
+    "rewards": [],
+    "tokens": [
+      {
+        "address": "0x4e8aaecCE10ad9394e96fE5f2bd4e587A7B04298",
+        "oracleId": "wnUSDT0",
+        "decimals": "1e6"
+      },
+      {
+        "address": "0x82c370ba90E38ef6Acd8b1b078d34fD86FC6bAC9",
+        "oracleId": "wnAUSD",
+        "decimals": "1e6"
+      },
+      {
+        "address": "0x8d5c2Df3Eef09088Fcccf3376D8EcD0Dd505f642",
+        "oracleId": "wnUSDC",
+        "decimals": "1e6"
+      }
+    ]
+  },
+  {
+    "name": "balancerv3-monad-wmon-gmon",
+    "address": "0xc0ABfAa62331DB4BEE1d3904B86310C5D120E045",
+    "gauge": "0x0000000000000000000000000000000000000000",
+    "merkl": true,
+    "decimals": "1e18",
+    "rewards": [],
+    "tokens": [
+      {
+        "address": "0x29D2075E5151B1A6863bDC40EA86bD5e8aFd1705",
+        "oracleId": "wngMON",
+        "decimals": "1e18"
+      },
+      {
+        "address": "0xdB39A9D4a1f1b4e93A5684d602207628aD60613C",
+        "oracleId": "wnWMON",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "balancerv3-monad-wmon-shmon",
+    "address": "0x340Fa62AE58e90473da64b0af622cdd6113106Cb",
+    "gauge": "0x0000000000000000000000000000000000000000",
+    "merkl": true,
+    "decimals": "1e18",
+    "rewards": [],
+    "tokens": [
+      {
+        "address": "0x5e073494678fB7FA4a05bB17d45941Dd9Dc469c1",
+        "oracleId": "wnshMON",
+        "decimals": "1e18"
+      },
+      {
+        "address": "0xdB39A9D4a1f1b4e93A5684d602207628aD60613C",
+        "oracleId": "wnWMON",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "balancerv3-monad-wmon-smon",
+    "address": "0x02b34a02db24179Ac2D77Ae20AA6215C7153E7f8",
+    "gauge": "0x0000000000000000000000000000000000000000",
+    "merkl": true,
+    "decimals": "1e18",
+    "rewards": [],
+    "tokens": [
+      {
+        "address": "0x08139339dd9A480CEB84D9C7CcE48BE436dB20b3",
+        "oracleId": "wnsMON",
+        "decimals": "1e18"
+      },
+      {
+        "address": "0xdB39A9D4a1f1b4e93A5684d602207628aD60613C",
+        "oracleId": "wnWMON",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "balancerv3-monad-aznd-ausd-loaznd",
+    "address": "0xbddb004A6c393C3F83BCCCF7F07eE9d409b214dE",
+    "gauge": "0x0000000000000000000000000000000000000000",
+    "merkl": true,
+    "decimals": "1e18",
+    "rewards": [],
+    "tokens": [
+      {
+        "address": "0x4917a5ec9fCb5e10f47CBB197aBe6aB63be81fE8",
+        "oracleId": "AZND",
+        "decimals": "1e18"
+      },
+      {
+        "address": "0x82c370ba90E38ef6Acd8b1b078d34fD86FC6bAC9",
+        "oracleId": "wnAUSD",
+        "decimals": "1e6"
+      },
+      {
+        "address": "0xD786F7569C39A9F64E6A54Eb77db21364E90F279",
+        "oracleId": "wnloAZND",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "balancerv3-monad-ausd-dust",
+    "address": "0x8f4fb1985Eb6D28b9E3f4aD116a6FFF087b55F43",
+    "gauge": "0x0000000000000000000000000000000000000000",
+    "merkl": true,
+    "decimals": "1e18",
+    "rewards": [],
+    "tokens": [
+      {
+        "address": "0x82c370ba90E38ef6Acd8b1b078d34fD86FC6bAC9",
+        "oracleId": "wnAUSD",
+        "decimals": "1e6"
+      },
+      {
+        "address": "0xAD96C3dffCD6374294e2573A7fBBA96097CC8d7c",
+        "oracleId": "DUST",
+        "decimals": "1e18"
+      }
+    ]
+  }
+]

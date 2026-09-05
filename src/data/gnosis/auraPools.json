@@ -1,0 +1,442 @@
+[
+  {
+    "name": "aura-gyro-gnosis-weth-reth",
+    "address": "0x71E1179C5e197FA551BEEC85ca2EF8693c61b85b",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0x37748422F82b0c07CCbD40347abC1Da55ac138a0",
+    "vaultPoolId": "0x71e1179c5e197fa551beec85ca2ef8693c61b85b0002000000000000000000a0",
+    "balancerChargesFee": true,
+    "decimals": "1e18",
+    "rewards": [
+      {
+        "rewardGauge": "0xF3A35933215c8Eaa329E2DD8433653Ea8cAD1674",
+        "oracleId": "AURA",
+        "decimals": "1e18"
+      }
+    ],
+    "tokens": [
+      {
+        "address": "0x6A023CCd1ff6F2045C3309768eAd9E68F978f6e1",
+        "oracleId": "WETH",
+        "decimals": "1e18"
+      },
+      {
+        "address": "0xc791240D1F2dEf5938E2031364Ff4ed887133C3d",
+        "oracleId": "rETH",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "aura-gyro-gnosis-weth-wsteth",
+    "address": "0x8DD4df4Ce580b9644437f3375e54f1ab09808228",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0x6869b960599A45396E67C086C6AA5123269291FA",
+    "vaultPoolId": "0x8dd4df4ce580b9644437f3375e54f1ab0980822800020000000000000000009c",
+    "decimals": "1e18",
+    "rewards": [
+      {
+        "rewardGauge": "0xaF261b747Ea4B78A6376bAF3f83eE43eB691D6F6",
+        "oracleId": "AURA",
+        "decimals": "1e18"
+      }
+    ],
+    "tokens": [
+      {
+        "address": "0x6A023CCd1ff6F2045C3309768eAd9E68F978f6e1",
+        "oracleId": "WETH",
+        "decimals": "1e18"
+      },
+      {
+        "address": "0x6C76971f98945AE98dD7d4DFcA8711ebea946eA6",
+        "oracleId": "wstETH",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "aura-gnosis-steur-eure",
+    "address": "0x06135A9Ae830476d3a941baE9010B63732a055F4",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0x408883E983695DeC78CF66480e6eFeF907a73c21",
+    "vaultPoolId": "0x06135a9ae830476d3a941bae9010b63732a055f4000000000000000000000065",
+    "composable": true,
+    "bptIndex": 1,
+    "decimals": "1e18",
+    "rewards": [
+      {
+        "rewardGauge": "0xB6c8e33adCD7981296793D3fc66addD7461D7F18",
+        "oracleId": "AURA",
+        "decimals": "1e18"
+      }
+    ],
+    "tokens": [
+      {
+        "address": "0x004626A008B1aCdC4c74ab51644093b155e59A23",
+        "oracleId": "stEUR",
+        "decimals": "1e18"
+      },
+      {
+        "oracleId": "BPTToken"
+      },
+      {
+        "address": "0xcB444e90D8198415266c6a2724b7900fb12FC56E",
+        "oracleId": "EURe",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "aura-gnosis-usdc.e-usdt-sdai",
+    "address": "0xfC095C811fE836Ed12f247BCf042504342B73FB7",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0x13E5AA7310b17a8eAF233731dE54EeD95a72e57a",
+    "vaultPoolId": "0xfc095c811fe836ed12f247bcf042504342b73fb700000000000000000000009f",
+    "composable": true,
+    "bptIndex": 3,
+    "decimals": "1e18",
+    "rewards": [
+      {
+        "rewardGauge": "0x2773E37ABE93dd56c181C926D9A7b6909e8fE03E",
+        "oracleId": "AURA",
+        "decimals": "1e18"
+      }
+    ],
+    "tokens": [
+      {
+        "address": "0x2a22f9c3b484c3629090FeED35F17Ff8F88f76F0",
+        "oracleId": "USDCe",
+        "decimals": "1e6"
+      },
+      {
+        "address": "0x4ECaBa5870353805a9F068101A40E0f32ed605C6",
+        "oracleId": "USDT",
+        "decimals": "1e6"
+      },
+      {
+        "address": "0xaf204776c7245bF4147c2612BF6e5972Ee483701",
+        "oracleId": "gsDAI",
+        "decimals": "1e18"
+      },
+      {
+        "oracleId": "BPTToken"
+      }
+    ]
+  },
+  {
+    "name": "aura-gnosis-crvusd-sdai",
+    "address": "0xc9F00C3a713008DDf69b768d90d4978549bFDF94",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0xFaD4505C5bF3D3654bA7C97A0Cea6e7B35882959",
+    "vaultPoolId": "0xc9f00c3a713008ddf69b768d90d4978549bfdf9400000000000000000000006d",
+    "decimals": "1e18",
+    "composable": true,
+    "bptIndex": 2,
+    "rewards": [
+      {
+        "rewardGauge": "0x6798312d6830991b8e29416BdF949BeaF233a86A",
+        "oracleId": "AURA",
+        "decimals": "1e18"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "crvUSD",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "gsDAI",
+        "decimals": "1e18"
+      },
+      {
+        "oracleId": "BPTToken"
+      }
+    ]
+  },
+  {
+    "name": "aura-gnosis-wsteth-sdai",
+    "address": "0xBc2acf5E821c5c9f8667A36bB1131dAd26Ed64F9",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0x49AaDc30B5cCC57bddd55aC8BD7D8DB7cf1f2b8b",
+    "vaultPoolId": "0xbc2acf5e821c5c9f8667a36bb1131dad26ed64f9000200000000000000000063",
+    "decimals": "1e18",
+    "rewards": [
+      {
+        "rewardGauge": "0xD73ed75c1D77E5C5Cc18e571140C2090851A2E2a",
+        "oracleId": "AURA",
+        "decimals": "1e18"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "wstETH",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "gsDAI",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "aura-gnosis-sdai-usdt-usdc",
+    "address": "0x7644fA5D0eA14FcF3E813Fdf93ca9544f8567655",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0x7513105D6cF9D18756D95DeD81D6d3F68dB4b8DA",
+    "vaultPoolId": "0x7644fa5d0ea14fcf3e813fdf93ca9544f8567655000000000000000000000066",
+    "decimals": "1e18",
+    "composable": true,
+    "bptIndex": 1,
+    "rewards": [
+      {
+        "rewardGauge": "0xAf12D2525FBa27E64785EA63Ad005a8702984ca7",
+        "oracleId": "AURA",
+        "decimals": "1e18"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "USDT",
+        "decimals": "1e6"
+      },
+      {
+        "oracleId": "BPTToken"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "gsDAI",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "USDC",
+        "decimals": "1e6"
+      }
+    ]
+  },
+  {
+    "name": "aura-gnosis-wsteth-cow",
+    "address": "0x4cdABE9E07ca393943AcFB9286bBbd0D0a310Ff6",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0x85298595D4F6F8Fa91f8658BA9c10f9A85B17f62",
+    "vaultPoolId": "0x4cdabe9e07ca393943acfb9286bbbd0d0a310ff600020000000000000000005c",
+    "decimals": "1e18",
+    "rewards": [
+      {
+        "rewardGauge": "0x51706d53BA375FF71A5676F1954954E0a79B98e8",
+        "oracleId": "AURA",
+        "decimals": "1e18"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "COW",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "wstETH",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "aura-gnosis-gno-cow",
+    "address": "0x21d4c792Ea7E38e0D0819c2011A2b1Cb7252Bd99",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0x8B59F9d4F24A266630756131fE62C3476886e496",
+    "vaultPoolId": "0x21d4c792ea7e38e0d0819c2011a2b1cb7252bd9900020000000000000000001e",
+    "decimals": "1e18",
+    "rewards": [
+      {
+        "rewardGauge": "0x989e6D7F0Bb82A0a480349f9F3ee3837a110E6C2",
+        "oracleId": "AURA",
+        "decimals": "1e18"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "COW",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "GNO",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "aura-gnosis-wsteth-gno",
+    "address": "0x4683e340a8049261057D5aB1b29C8d840E75695e",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0x14A81C9283CC16897DaA3f466847Baa260b770eB",
+    "vaultPoolId": "0x4683e340a8049261057d5ab1b29c8d840e75695e00020000000000000000005a",
+    "decimals": "1e18",
+    "rewards": [
+      {
+        "rewardGauge": "0xF27a401d66fbc85a113c384Da7848D31AC1B6a9c",
+        "oracleId": "AURA",
+        "decimals": "1e18"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "wstETH",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "GNO",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "aura-gnosis-sdai-eure",
+    "address": "0xDd439304A77f54B1F7854751Ac1169b279591Ef7",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0xDE151980d461696543aa07A19BbE2603B20ECbAE",
+    "vaultPoolId": "0xdd439304a77f54b1f7854751ac1169b279591ef7000000000000000000000064",
+    "decimals": "1e18",
+    "composable": true,
+    "bptIndex": 2,
+    "rewards": [
+      {
+        "rewardGauge": "0x3b7f151E0654e309A5327C5AEe98D62914F1bCA6",
+        "oracleId": "USDC",
+        "decimals": "1e6"
+      },
+      {
+        "rewardGauge": "0xD73ed75c1D77E5C5Cc18e571140C2090851A2E2a",
+        "oracleId": "AURA",
+        "decimals": "1e18"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "gsDAI",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "EURe",
+        "decimals": "1e18"
+      },
+      {
+        "oracleId": "BPTToken"
+      }
+    ]
+  },
+  {
+    "name": "aura-gnosis-wsteth-bal-aura",
+    "address": "0x00dF7f58e1Cf932eBe5f54De5970Fb2Bdf0ef06D",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0x51867537e5532186E76BA5380235512A9A4ca52a",
+    "vaultPoolId": "0x00df7f58e1cf932ebe5f54de5970fb2bdf0ef06d00010000000000000000005b",
+    "decimals": "1e18",
+    "balancerChargesFee": true,
+    "rewards": [
+      {
+        "rewardGauge": "0x7E4637edd50c76e9401733d51454b5e04229fAeb",
+        "oracleId": "AURA",
+        "decimals": "1e18"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "AURA",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "wstETH",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "BAL",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "aura-gnosis-wsteth-weth",
+    "address": "0xbAd20c15A773bf03ab973302F61FAbceA5101f0A",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0x026d163C28cC7dbf57d6ED57f14208Ee412CA526",
+    "vaultPoolId": "0xbad20c15a773bf03ab973302f61fabcea5101f0a000000000000000000000034",
+    "decimals": "1e18",
+    "composable": true,
+    "bptIndex": 2,
+    "rewards": [
+      {
+        "rewardGauge": "0xAaA92dcb82A1560841594cA3FCAce2243E75FeAa",
+        "oracleId": "AURA",
+        "decimals": "1e18"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "WETH",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "wstETH",
+        "decimals": "1e18"
+      },
+      {
+        "oracleId": "BPTToken"
+      }
+    ]
+  },
+  {
+    "name": "aura-gnosis-usdc-usdt-wxdai",
+    "address": "0x2086f52651837600180dE173B09470F54EF74910",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0x0821ed041620b83b306FfaC74Df3FA855cEDe51A",
+    "vaultPoolId": "0x2086f52651837600180de173b09470f54ef7491000000000000000000000004f",
+    "decimals": "1e18",
+    "composable": true,
+    "bptIndex": 0,
+    "rewards": [
+      {
+        "rewardGauge": "0xB1b4d2268F64eA804009d67b03276aF142E12771",
+        "oracleId": "AURA",
+        "decimals": "1e18"
+      }
+    ],
+    "tokens": [
+      {
+        "oracleId": "BPTToken"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "USDT",
+        "decimals": "1e6"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "USDC",
+        "decimals": "1e6"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "WXDAI",
+        "decimals": "1e18"
+      }
+    ]
+  }
+]

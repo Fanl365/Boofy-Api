@@ -1,0 +1,103 @@
+[
+  {
+    "name": "fx-reusd-fxusd",
+    "pool": "0xb0ef04ACE97d350E24Efa5139d2590D26a61A8Dc",
+    "gauge": "0x8d9186Fa822624bad50a5cB2545048CB26b4E65E",
+    "tokens": [
+      {
+        "oracleId": "reUSD",
+        "decimals": "1e18"
+      },
+      {
+        "oracleId": "fxUSD",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "fx-eusd-fxusd",
+    "pool": "0x16b54e3aC8e3ba088333985035b869847e36E770",
+    "gauge": "0x5801Bb8f568979C722176Df36b1a74654A9C52b5",
+    "tokens": [
+      {
+        "oracleId": "eUSD",
+        "decimals": "1e18"
+      },
+      {
+        "oracleId": "fxUSD",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "fx-gho-fxusd",
+    "pool": "0x74345504Eaea3D9408fC69Ae7EB2d14095643c5b",
+    "gauge": "0xf0A3ECed42Dbd8353569639c0eaa833857aA0A75",
+    "getDy": ["v1", 0, 1],
+    "tokens": [
+      {
+        "oracleId": "GHO",
+        "decimals": "1e18"
+      },
+      {
+        "oracleId": "fxUSD",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "fx-usdc-fxusd",
+    "pool": "0x5018BE882DccE5E3F2f3B0913AE2096B9b3fB61f",
+    "gauge": "0xf1E141C804BA39b4a031fDF46e8c08dBa7a0df60",
+    "getDy": ["v1", 1, 0],
+    "rewards": [
+      {
+        "token": "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+        "oracleId": "wstETH"
+      }
+    ],
+    "tokens": [
+      {
+        "oracleId": "USDC",
+        "decimals": "1e6"
+      },
+      {
+        "oracleId": "fxUSD",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "fx-fxn-cvxfxn",
+    "pool": "0x1062FD8eD633c1f080754c19317cb3912810B5e5",
+    "gauge": "0xfEFafB9446d84A9e58a3A2f2DDDd7219E8c94FbB",
+    "getDy": ["v1", 1, 0],
+    "tokens": [
+      {
+        "oracleId": "FXN",
+        "decimals": "1e18"
+      },
+      {
+        "oracleId": "cvxFXN",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "fx-fxn-eth",
+    "pool": "0xC15F285679a1Ef2d25F53D4CbD0265E1D02F2A92",
+    "token": "0xE06A65e09Ae18096B99770A809BA175FA05960e2",
+    "gauge": "0xA5250C540914E012E22e623275E290c4dC993D11",
+    "getDy": ["v2", 1, 0],
+    "tokens": [
+      {
+        "oracleId": "ETH",
+        "decimals": "1e18"
+      },
+      {
+        "oracleId": "FXN",
+        "decimals": "1e18"
+      }
+    ]
+  }
+]

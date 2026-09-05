@@ -1,0 +1,80 @@
+[
+  {
+    "name": "aavev3-monad-usdt0",
+    "token": "0xe7cd86e13AC4309349F30B3435a9d337750fC82D",
+    "aToken": "0x9531E6bC99D7F7f0596ed7bA5b846Ba9Eb60468c",
+    "debtToken": "0x85812C8eEeB8723e3C60d0Dc78e697b4E7e5a35D",
+    "identifier": "2ad4b51d3a9994aa",
+    "oracle": "tokens",
+    "oracleId": "USDT0",
+    "decimals": "1e6",
+    "borrowDepth": 1,
+    "borrowPercent": 0,
+    "skimLending": true
+  },
+  {
+    "name": "aavev3-monad-usdc",
+    "token": "0x754704Bc059F8C67012fEd69BC8A327a5aafb603",
+    "aToken": "0x35a73BAcb179d3740395A3ceCc87FF2e581d6042",
+    "debtToken": "0x9F555aB84C4e0a531B50283f09Dba7A97134c4e4",
+    "identifier": "42122c11613195ed",
+    "oracle": "tokens",
+    "oracleId": "USDC",
+    "decimals": "1e6",
+    "borrowDepth": 1,
+    "borrowPercent": 0,
+    "skimLending": true
+  },
+  {
+    "name": "aavev3-monad-weth",
+    "token": "0xEE8c0E9f1BFFb4Eb878d8f15f368A02a35481242",
+    "aToken": "0x4377b53aAA8b8e3fF7AA2843832CAF004f5Cb8b6",
+    "debtToken": "0xd1f352c326731027f0d9a7f62a4742eBdf1EFc8c",
+    "identifier": "348991eb04315a46",
+    "oracle": "tokens",
+    "oracleId": "WETH",
+    "decimals": "1e18",
+    "borrowDepth": 1,
+    "borrowPercent": 0,
+    "skimLending": true
+  },
+  {
+    "name": "aavev3-monad-ausd",
+    "token": "0x00000000eFE302BEAA2b3e6e1b18d08D69a9012a",
+    "aToken": "0xdeBFeDF35faEd5d1664E553545e144C02227A2Ec",
+    "debtToken": "0x8F4c10B392ef10c811E4d4BAFC74Bfc1A2671C75",
+    "identifier": "f818330d67e4a1c1",
+    "oracle": "tokens",
+    "oracleId": "AUSD",
+    "decimals": "1e6",
+    "borrowDepth": 1,
+    "borrowPercent": 0,
+    "skimLending": true
+  },
+  {
+    "name": "aavev3-monad-gho",
+    "token": "0xfc421aD3C883Bf9E7C4f42dE845C4e4405799e73",
+    "aToken": "0x4586face17B0e3D4d51EcABb4B4EBC2354b61b0D",
+    "debtToken": "0x1dd98eDe37480c2E0827a107c68f442aA516E7fc",
+    "identifier": "3053d8e9f28ed93e",
+    "oracle": "tokens",
+    "oracleId": "GHO",
+    "decimals": "1e18",
+    "borrowDepth": 1,
+    "borrowPercent": 0,
+    "skimLending": true
+  },
+  {
+    "name": "aavev3-monad-musd",
+    "token": "0xacA92E438df0B2401fF60dA7E4337B687a2435DA",
+    "aToken": "0xDBb2e1b6BC94328Df2662A1796AB6A23fCde3199",
+    "debtToken": "0x9837392b2b5b2Ce7C39A357E0eB6E07d9fFb76Cd",
+    "identifier": "9b7272ce2572809e",
+    "oracle": "tokens",
+    "oracleId": "MetaMaskUSD",
+    "decimals": "1e6",
+    "borrowDepth": 1,
+    "borrowPercent": 0,
+    "skimLending": true
+  }
+]

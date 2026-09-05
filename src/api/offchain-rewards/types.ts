@@ -1,0 +1,101 @@
+import type { Address } from 'viem';
+import type { AppChain } from '../../utils/chain.ts';
+import type { MerklApiCampaignStatus } from './providers/merkl/types.ts';
+
+export type ProviderId = 'merkl' | 'stellaswap';
+
+export type RewardToken = {
+  address: Address;
+  symbol: string;
+  decimals: number;
+  chainId: AppChain;
+  type: 'erc20' | 'native';
+};
+
+export type Vault = {
+  id: string;
+  address: Address;
+  poolAddress: Address;
+  /** @dev this does not match vault config */
+  type: 'standard' | 'gov' | 'cowcentrated' | 'cowcentrated-pool' | 'cowcentrated-vault';
+  chainId: AppChain;
+};
+
+export type CampaignVault = Vault & {
+  apr: number;
+};
+
+export type BoofyCampaignType = 'test' | 'arb-ltipp' | 'op-gov-fund' | 'zap-v3' | 'mode-grant' | 'other';
+export type ExternalCampaignType = 'external';
+export type CampaignType = BoofyCampaignType | ExternalCampaignType;
+
+type MakeCampaign<TProvider extends ProviderId, TExtra extends object = {}> = {
+  providerId: TProvider;
+  id: string;
+  chainId: AppChain;
+  rewardToken: RewardToken;
+  vaults: CampaignVault[];
+  type: CampaignType;
+  startTimestamp: number;
+  endTimestamp: number;
+  active: boolean;
+} & TExtra;
+
+export type MerklCampaign = MakeCampaign<
+  'merkl',
+  {
+    campaignId: string;
+    opportunityId: string;
+    campaignStatus?: Pick<MerklApiCampaignStatus, 'computedUntil' | 'processingStarted' | 'status'>;
+    url: string;
+  }
+>;
+
+export type StellaSwapCampaign = MakeCampaign<
+  'stellaswap',
+  {
+    rewardId: number;
+    rewarderAddress: Address;
+    isPaused: boolean;
+  }
+>;
+
+export type CampaignByProvider = {
+  merkl: MerklCampaign;
+  stellaswap: StellaSwapCampaign;
+};
+
+// export type Campaign = CampaignByProvider[ProviderId];
+export type Campaign = MerklCampaign | StellaSwapCampaign;
+
+export interface IOffchainRewardProvider<T extends Campaign = Campaign> {
+  readonly id: T['providerId'];
+  supportsChain(chainId: AppChain): boolean;
+  supportsVault(vault: Vault): boolean;
+  getCampaigns(chainId: AppChain, vaults: Vault[]): Promise<T[]>;
+  isActive(campaign: T, unixTime: number): boolean;
+}
+
+export type UpdateRequest = {
+  chainId: AppChain;
+  providerId: ProviderId;
+  type: 'full' | 'check';
+};
+
+export type UpdateRejected = {
+  request: UpdateRequest;
+  status: 'rejected';
+  reason: Error;
+};
+
+export type UpdateResolved = {
+  request: UpdateRequest;
+  status: 'resolved';
+};
+
+export type UpdateResult = UpdateResolved | UpdateRejected;
+
+export type CampaignsWithMeta = {
+  lastUpdated: number;
+  campaigns: ReadonlyArray<Campaign>;
+};

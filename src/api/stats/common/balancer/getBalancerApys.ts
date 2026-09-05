@@ -1,0 +1,148 @@
+import type { NormalizedCacheObject } from '@apollo/client/cache/inmemory/types.js';
+import type { ApolloClient } from '@apollo/client/core/ApolloClient.js';
+import type { ChainId } from '@beefyfinance/blockchain-addressbook';
+import { BigNumber } from 'bignumber.js';
+import { getBalTradingAndLstApr } from '../../../../utils/getBalancerTradingFeeAndLstApr.ts';
+import { getLoggerFor } from '../../../../utils/logger/index.ts';
+import { getMerklAprByExplorerAddress } from '../../../offchain-rewards/providers/merkl/proxyClient.ts';
+import { type ApyBreakdownResult, getApyBreakdown } from '../getApyBreakdown.ts';
+import { getTotalStakedInUsd, getYearlyRewardsInUsd } from './balancerUtils.ts';
+
+const logger = getLoggerFor({ module: 'apy', component: 'balancer' });
+
+interface Token {
+  newGauge?: boolean;
+  oracle: string;
+  oracleId?: string;
+  decimals?: string;
+}
+
+interface Underlying {
+  address: string;
+  index: number;
+  poolId?: string;
+  bbIndex?: number;
+}
+
+interface Pool {
+  name: string;
+  address: string;
+  tokens: Token[];
+  boofyFee?: number;
+  status?: string;
+  lsIndex?: number;
+  cmpIndex?: number;
+  composable?: boolean;
+  bptIndex?: number;
+  vaultPoolId?: string;
+  lsUrl?: string;
+  lsAprFactor?: number | number[];
+  dataPath?: string;
+  balancerChargesFee?: boolean;
+  includesComposableAaveTokens?: boolean;
+  aaveUnderlying?: Underlying[];
+  bbPoolId?: string;
+  bbIndex?: number;
+  composableSplit?: boolean;
+  merkl?: boolean;
+}
+
+interface BalancerParams {
+  chainId: number;
+  client: ApolloClient<NormalizedCacheObject>;
+  pools: Pool[];
+  balancerVault: string;
+  aaveDataProvider?: string;
+  log?: boolean;
+}
+
+const liquidityProviderFee = 0.0025;
+
+export const getBalancerApys = async (params: BalancerParams): Promise<ApyBreakdownResult> => {
+  const pairAddresses = params.pools.map(pool => pool.address);
+
+  const [tradingAprs, poolApys] = await Promise.all([
+    getTradingFeeAprBalancer(params.chainId, pairAddresses),
+    getPoolApys(params),
+  ]);
+
+  return getApyBreakdown(
+    params.pools,
+    tradingAprs.tradingAprMap,
+    poolApys.farmAprs,
+    liquidityProviderFee,
+    tradingAprs.lstAprs
+  );
+};
+
+const getTradingFeeAprBalancer = async (chainId: ChainId, pairAddresses: string[]) => {
+  const data = await getBalTradingAndLstApr(chainId, pairAddresses);
+  return data;
+};
+
+const getPoolApys = async (params: BalancerParams) => {
+  const merklPools = params.pools.filter(pool => pool.merkl);
+  const merklAprByAddress =
+    merklPools.length > 0
+      ? await getMerklV4AprByExplorerAddress(
+          params.chainId,
+          merklPools.map(p => p.address)
+        )
+      : {};
+
+  const farmAprs: BigNumber[] = [];
+
+  const poolApyCalls = params.pools.map(pool => getPoolApy(pool, params));
+  const poolApyResults = await Promise.all(poolApyCalls);
+
+  params.pools.forEach((pool, i) => {
+    const addressKey = pool.address?.toLowerCase?.();
+    const merklApr = pool.merkl && addressKey ? (merklAprByAddress[addressKey] ?? 0) : 0;
+
+    // fold merkl into vault APR (fee charged + autocompounded), not a standalone merklApr
+    const base = pool.merkl ? new BigNumber(0) : (poolApyResults[i] ?? new BigNumber(0));
+    farmAprs[i] = base.plus(merklApr);
+  });
+
+  return { farmAprs };
+};
+
+const getPoolApy = async (pool: Pool, params: BalancerParams) => {
+  if (pool.status === 'eol') return new BigNumber(0);
+  return new BigNumber(0);
+  let rewardsApy: BigNumber = new BigNumber(0);
+
+  const [yearlyRewardsInUsd, totalStakedInUsd] = await Promise.all([
+    getYearlyRewardsInUsd(params.chainId, pool),
+    getTotalStakedInUsd(params.chainId, pool),
+  ]);
+
+  rewardsApy = yearlyRewardsInUsd.dividedBy(totalStakedInUsd);
+
+  if (params.log) {
+    logger.debug(
+      {
+        pool: pool.name,
+        apy: rewardsApy.toNumber(),
+        tvl: totalStakedInUsd.valueOf(),
+        yearlyRewardsUsd: yearlyRewardsInUsd.valueOf(),
+      },
+      'pool apy'
+    );
+  }
+
+  return rewardsApy;
+};
+
+const getMerklV4AprByExplorerAddress = async (
+  chainId: number,
+  explorerAddresses: string[]
+): Promise<Record<string, number>> => {
+  if (explorerAddresses.length === 0) return {};
+  try {
+    return await getMerklAprByExplorerAddress(chainId, explorerAddresses);
+  } catch (e) {
+    logger.warn({ err: e, chain: chainId }, 'failed to fetch merkl aprs via proxy');
+    return {};
+  }
+};

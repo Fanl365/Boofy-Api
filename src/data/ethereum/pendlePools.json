@@ -1,0 +1,82 @@
+[
+  {
+    "name": "pendle-reusd-25jun26",
+    "address": "0xf5929a1C332ceaB7918A4593a43Db2B9aC20095f",
+    "oracle": "tokens",
+    "oracleId": "USDC",
+    "decimals": "1e6",
+    "chainId": 1
+  },
+  {
+    "name": "pendle-reusde-25jun26",
+    "address": "0x6CB9A013604A567a5834fadD411165B1ca616783",
+    "oracle": "tokens",
+    "oracleId": "USDe",
+    "decimals": "1e18",
+    "chainId": 1
+  },
+  {
+    "name": "pendle-ysybold-27nov25",
+    "address": "0x1BD78377DFbCA2043e38b692D2E0b32396b4772d",
+    "eqbGauge": "0xC5B9105fe34Ef7746f6460D8B1C3E450088aE65c",
+    "oracle": "tokens",
+    "oracleId": "BOLD",
+    "decimals": "1e18",
+    "chainId": 1
+  },
+  {
+    "name": "pendle-susdf-29jan26",
+    "address": "0xEB5819B31A0378407F43aBa2F3E9d16b40aa5ec7",
+    "eqbGauge": "0xe065069F51d524972d9Dc9E562Dd6b2908ab5419",
+    "oracle": "tokens",
+    "oracleId": "USDf",
+    "decimals": "1e18",
+    "chainId": 1
+  },
+  {
+    "name": "pendle-cusd-29jan26",
+    "address": "0x307c15f808914Df5a5DbE17E5608f84953fFa023",
+    "eqbGauge": "0xc5e7819FAB1dc370404354893499965D597C58a7",
+    "oracle": "tokens",
+    "oracleId": "USDC",
+    "decimals": "1e18",
+    "chainId": 1
+  },
+  {
+    "name": "pendle-stcusd-29jan26",
+    "address": "0xCC781b043933c10a04409b22aaDa3a3D1A7f29D4",
+    "eqbGauge": "0xEc71e3326C9ab00583565AB43538Ae724730d9E9",
+    "oracle": "tokens",
+    "oracleId": "USDC",
+    "decimals": "1e18",
+    "chainId": 1
+  },
+  {
+    "name": "pendle-usdf-29jan26",
+    "address": "0xc65B7a0f8Fc97e1D548860d866f4304E039EF016",
+    "eqbGauge": "0xb3D29e68BE632A203bBbBba819e3FE4745c9c72e",
+    "oracle": "tokens",
+    "oracleId": "USDf",
+    "decimals": "1e18",
+    "chainId": 1
+  },
+  {
+    "name": "pendle-susdf-25sep25",
+    "address": "0x45F163E583D34b8E276445dd3Da9aE077D137d72",
+    "eqbGauge": "0x881acc0266e025Ae346f7613dEB34907532DB40e",
+    "oracle": "tokens",
+    "oracleId": "USDf",
+    "decimals": "1e18",
+    "chainId": 1
+  },
+  {
+    "name": "pendle-steth-25dec25",
+    "address": "0xC374f7eC85F8C7DE3207a10bB1978bA104bdA3B2",
+    "eqbGauge": "0x06fd8e5DaE63afCbfdF10604efCa3143Df534f37",
+    "oracle": "tokens",
+    "oracleId": "ETH",
+    "decimals": "1e18",
+    "chainId": 1,
+    "boofyFee": 0.095
+  }
+]

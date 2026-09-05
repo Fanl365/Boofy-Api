@@ -1,0 +1,105 @@
+{
+  "name": "@beefyfinance/blockchain-addressbook",
+  "version": "0.59.7",
+  "description": "A collection of useful addresses on various chains for defi development",
+  "type": "module",
+  "types": "./src/address-book/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/address-book/index.ts",
+      "import": "./src/address-book/index.ts"
+    },
+    "./types/*": {
+      "types": "./src/types/*.ts",
+      "import": "./src/types/*.ts"
+    },
+    "./util/*": {
+      "types": "./src/util/*.ts",
+      "import": "./src/util/*.ts"
+    },
+    "./*": {
+      "types": "./src/address-book/*/index.ts",
+      "import": "./src/address-book/*/index.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./src/address-book/index.ts",
+  "publishConfig": {
+    "access": "public",
+    "types": "./dist/address-book/index.d.ts",
+    "main": "./dist/address-book/index.cjs",
+    "exports": {
+      ".": {
+        "import": {
+          "types": "./dist/address-book/index.d.ts",
+          "default": "./dist/address-book/index.js"
+        },
+        "require": {
+          "types": "./dist/address-book/index.d.cts",
+          "default": "./dist/address-book/index.cjs"
+        }
+      },
+      "./types/*": {
+        "import": {
+          "types": "./dist/types/*.d.ts",
+          "default": "./dist/types/*.js"
+        },
+        "require": {
+          "types": "./dist/types/*.d.cts",
+          "default": "./dist/types/*.cjs"
+        }
+      },
+      "./util/*": {
+        "import": {
+          "types": "./dist/util/*.d.ts",
+          "default": "./dist/util/*.js"
+        },
+        "require": {
+          "types": "./dist/util/*.d.cts",
+          "default": "./dist/util/*.cjs"
+        }
+      },
+      "./*": {
+        "import": {
+          "types": "./dist/address-book/*/index.d.ts",
+          "default": "./dist/address-book/*/index.js"
+        },
+        "require": {
+          "types": "./dist/address-book/*/index.d.cts",
+          "default": "./dist/address-book/*/index.cjs"
+        }
+      },
+      "./package.json": "./package.json"
+    }
+  },
+  "files": [
+    "./dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boofyfinance/boofy-api.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "addChain": "tsx ./scripts/addChain.ts",
+    "build": "tsdown",
+    "checkAddresses": "tsx ./scripts/checkAddresses.ts",
+    "checkDecimals": "tsx ./scripts/checkDecimals.ts",
+    "checkOracles": "tsx ./scripts/checkOracles.ts",
+    "checkDuplicates": "tsx ./scripts/checkDuplicates.ts",
+    "submit": "pnpm -w exec tsx scripts/check-addresses.ts packages/address-book/src && pnpm run build && pnpm publish",
+    "test": "pnpm run typecheck && pnpm run test:lint",
+    "typecheck": "tsc --project tsconfig.json",
+    "test:lint": "pnpm run lint",
+    "lint": "biome check",
+    "lint:fix": "biome check --fix"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "catalog:",
+    "@types/node": "catalog:",
+    "tsdown": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
+    "viem": "catalog:"
+  }
+}

@@ -1,0 +1,78 @@
+[
+  {
+    "name": "moe-lend-meth",
+    "address": "0xFb16B5CCC62dc125834c33BF6B063c87e6e6F581",
+    "decimals": "1e18",
+    "poolId": 24,
+    "chainId": 5000,
+    "lp0": {
+      "address": "0x25356aeca4210eF7553140edb9b8026089E49396",
+      "oracle": "tokens",
+      "oracleId": "LEND",
+      "decimals": "1e18"
+    },
+    "lp1": {
+      "address": "0xcDA86A272531e8640cD7F1a92c01839911B90bb0",
+      "oracle": "tokens",
+      "oracleId": "mETH",
+      "decimals": "1e18"
+    }
+  },
+  {
+    "name": "moe-meth-weth",
+    "address": "0x86e3a987187feD135D6d9C114f1857D8144F01e1",
+    "decimals": "1e18",
+    "poolId": 1,
+    "chainId": 5000,
+    "lp0": {
+      "address": "0xcDA86A272531e8640cD7F1a92c01839911B90bb0",
+      "oracle": "tokens",
+      "oracleId": "mETH",
+      "decimals": "1e18"
+    },
+    "lp1": {
+      "address": "0xdEAddEaDdeadDEadDEADDEAddEADDEAddead1111",
+      "oracle": "tokens",
+      "oracleId": "WETH",
+      "decimals": "1e18"
+    }
+  },
+  {
+    "name": "moe-moe-wmnt",
+    "address": "0x763868612858358f62b05691dB82Ad35a9b3E110",
+    "decimals": "1e18",
+    "poolId": 15,
+    "chainId": 5000,
+    "lp0": {
+      "address": "0x4515A45337F461A11Ff0FE8aBF3c606AE5dC00c9",
+      "oracle": "tokens",
+      "oracleId": "MOE",
+      "decimals": "1e18"
+    },
+    "lp1": {
+      "address": "0x78c1b0C915c4FAA5FffA6CAbf0219DA63d7f4cb8",
+      "oracle": "tokens",
+      "oracleId": "WMNT",
+      "decimals": "1e18"
+    }
+  },
+  {
+    "name": "moe-usdc-wmnt",
+    "address": "0x1a4d4Aa3bd8587F6e05Cc98Cf87954f7D95c11c6",
+    "decimals": "1e18",
+    "poolId": 3,
+    "chainId": 5000,
+    "lp0": {
+      "address": "0x09Bc4E0D864854c6aFB6eB9A9cdF58aC190D0dF9",
+      "oracle": "tokens",
+      "oracleId": "USDC",
+      "decimals": "1e6"
+    },
+    "lp1": {
+      "address": "0x78c1b0C915c4FAA5FffA6CAbf0219DA63d7f4cb8",
+      "oracle": "tokens",
+      "oracleId": "WMNT",
+      "decimals": "1e18"
+    }
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "name": "velodrome-velo-op",
+    "address": "0xFFD74EF185989BFF8752c818A53a47FC45388F08",
+    "gauge": "0x1F36f95a02C744f2B3cD196b5e44E749c153D3B9",
+    "decimals": "1e18",
+    "chainId": 10,
+    "lp0": {
+      "address": "0x3c8B650257cFb5f272f799F5e2b4e65093a11a05",
+      "oracle": "tokens",
+      "oracleId": "VELO",
+      "decimals": "1e18"
+    },
+    "lp1": {
+      "address": "0x4200000000000000000000000000000000000042",
+      "oracle": "tokens",
+      "oracleId": "OP",
+      "decimals": "1e18"
+    }
+  },
+  {
+    "name": "velodrome-velo-bevelo",
+    "address": "0x50244607Ea4d21C71cD8D55Da393d7A3189B8E7A",
+    "gauge": "0x5C821aF715e3e519Dc9fE276660f9369DD133BDC",
+    "decimals": "1e18",
+    "chainId": 10,
+    "boofyFee": 0.095,
+    "lp0": {
+      "address": "0x3c8B650257cFb5f272f799F5e2b4e65093a11a05",
+      "oracle": "tokens",
+      "oracleId": "VELO",
+      "decimals": "1e18"
+    },
+    "lp1": {
+      "address": "0xfDeFFc7Ad816BF7867C642dF7eBC2CC5554ec265",
+      "oracle": "tokens",
+      "oracleId": "BeVELO",
+      "decimals": "1e18"
+    }
+  }
+]

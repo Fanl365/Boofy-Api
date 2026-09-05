@@ -1,0 +1,66 @@
+import { createClient, type RedisClientType } from 'redis';
+import { getLoggerFor } from '../logger/index.ts';
+import type { ICacheBackend } from './ICacheBackend.ts';
+
+const logger = getLoggerFor({ module: 'cache', component: 'redis' });
+
+export class RedisCacheBackend implements ICacheBackend {
+  private client: RedisClientType;
+  private readonly timeoutMs = 30000; // 30 seconds
+
+  protected constructor(url: string) {
+    this.client = createClient({ url });
+
+    this.client.on('connect', async () => {
+      logger.info('connected to redis');
+    });
+
+    this.client.on('error', err => {
+      logger.warn({ err }, 'redis client error');
+    });
+  }
+
+  private async withTimeout<T>(operation: () => Promise<T>, operationName: string): Promise<T | undefined> {
+    const timeout = new Promise<never>((_, reject) =>
+      setTimeout(
+        () => reject(new Error(`Redis ${operationName} operation timed out after ${this.timeoutMs}ms`)),
+        this.timeoutMs
+      )
+    );
+
+    try {
+      return await Promise.race([operation(), timeout]);
+    } catch (error) {
+      logger.warn({ operation: operationName, err: error }, 'redis operation failed');
+    }
+  }
+
+  protected async connect() {
+    await this.client.connect();
+  }
+
+  public static async create(url: string): Promise<RedisCacheBackend> {
+    const instance = new RedisCacheBackend(url);
+    await instance.connect();
+    return instance;
+  }
+
+  async get(key: string): Promise<string | undefined> {
+    return this.withTimeout(async () => {
+      const result = await this.client.get(key);
+      // can return empty object when there's a serialization issue
+      if (result === null || result === undefined || (typeof result === 'object' && Object.keys(result).length === 0)) {
+        return undefined;
+      }
+      return String(result);
+    }, `GET ${key}`);
+  }
+
+  async set(key: string, value: string): Promise<void> {
+    await this.withTimeout(() => this.client.set(key, value), `SET ${key}`);
+  }
+
+  async delete(key: string): Promise<void> {
+    await this.withTimeout(() => this.client.del(key), `DELETE ${key}`);
+  }
+}

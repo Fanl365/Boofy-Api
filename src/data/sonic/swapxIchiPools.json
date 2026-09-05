@@ -1,0 +1,86 @@
+[
+  {
+    "name": "swapx-ichi-usdc-wbtc",
+    "address": "0xeaEFa49b10Ea464b4746380401e8eb3e1AE37964",
+    "gauge": "0xA7d753D2dC35eFa01ADFB53081F6aF9B3f72eB2D",
+    "tokens": ["WBTC", "USDCe"]
+  },
+  {
+    "name": "swapx-ichi-wbtc-usdc",
+    "address": "0xb5ba2817CB2C352926C81642c753084Dfe4Be533",
+    "gauge": "0x42f1C132feC11625C340754DFDBb1BEF20A11C4A",
+    "tokens": ["WBTC", "USDCe"]
+  },
+  {
+    "name": "swapx-ichi-wbtc-weth",
+    "address": "0x5A9A58D8a3f0ba1B38F63fE9d56ebBEC129915bd",
+    "gauge": "0x552F45FeF6d09EDA012798f88b6DC05B0Dcb100E",
+    "tokens": ["WBTC", "WETH"]
+  },
+  {
+    "name": "swapx-ichi-usdc.e-usdt",
+    "address": "0xC751b73E97e2Bd7D141989Ba418772223dB93664",
+    "gauge": "0x30Df881606c719916b99a0b5bc89e5eB338a226C",
+    "tokens": ["USDCe", "USDT"]
+  },
+  {
+    "name": "swapx-ichi-weth-swpx-weth",
+    "address": "0x31d3419c0A2780836C603C086266f803f655e7F0",
+    "gauge": "0x639d5aCaCC34aFf29379DCe402f480741D1aBAE3",
+    "tokens": ["WETH", "SWPx"]
+  },
+  {
+    "name": "swapx-ichi-ws-os-os",
+    "address": "0xc4A71981DC8ee8ee704b6217DaebAd6ECe185aeb",
+    "gauge": "0x3a4A0040475575638beB4051d8950ea21686ce27",
+    "tokens": ["WS", "OS"]
+  },
+  {
+    "name": "swapx-ichi-ws-weth-weth",
+    "address": "0x04A5AE9fc90A66244E1448A01adA904A68CcCc68",
+    "gauge": "0xbA9212b9475FEf60c4405f52961aDbd36527be74",
+    "tokens": ["WS", "WETH"]
+  },
+  {
+    "name": "swapx-ichi-usdc.e-weth-weth",
+    "address": "0x6c7b6f02e9f5E525fc70f120f47D4A893f977d0E",
+    "gauge": "0xc9eEf8C5cF38990CaDF0CB9c912085FB877C113C",
+    "tokens": ["USDCe", "WETH"]
+  },
+  {
+    "name": "swapx-ichi-ws-usdc.e-usdc.e",
+    "address": "0xc263e421Df94bdf57B27120A9B7B8534A6901D95",
+    "gauge": "0x29d10053BE597E0eBe6BD0434c4f4b750F0f3b69",
+    "tokens": ["WS", "USDCe"]
+  },
+  {
+    "name": "swapx-ichi-ws-sts-sts",
+    "address": "0xa68D5DbAe00960De66DdEaD4d53faea39f21983b",
+    "gauge": "0x2f9e2852de03c42c13d3dCdD2C57c0b3cF0382c1",
+    "tokens": ["WS", "stS"]
+  },
+  {
+    "name": "swapx-ichi-ws-sts",
+    "address": "0xfD10ac67449C16F368a4BB49f544E0A865A77614",
+    "gauge": "0xC693c6fc1d2b44DfB5C5aa05Ca2b02A91DB97528",
+    "tokens": ["WS", "stS"]
+  },
+  {
+    "name": "swapx-ichi-ws-swpx",
+    "address": "0xfDEc32751Faade573B285C8CC606677beE656A4C",
+    "gauge": "0x701A6eB7879B9da39662950DCCAfC5C81e0b60B0",
+    "tokens": ["WS", "SWPx"]
+  },
+  {
+    "name": "swapx-ichi-usdc.e-swpx",
+    "address": "0x5De651be21beeDe8ABE808D1425b278ac4a3604B",
+    "gauge": "0xbEE97F13cc7a681436eE8dE71926B8faD6F10B0f",
+    "tokens": ["USDCe", "SWPx"]
+  },
+  {
+    "name": "swapx-ichi-ws-usdc.e",
+    "address": "0x5F62d612c69fF7BE3FBd9a0cD530D57bCbC7b642",
+    "gauge": "0xdcE26623440B34a93e748e131577049a8d84DdEd",
+    "tokens": ["WS", "USDCe"]
+  }
+]

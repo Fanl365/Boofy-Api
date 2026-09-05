@@ -1,0 +1,110 @@
+[
+  {
+    "address": "0xC7AFdB8Ef47C058E8F4094Cca09080BcAb662e80",
+    "lpAddress": "0xCBCdF9626bC03E24f779434178A73a0B4bad62eD",
+    "tokens": ["0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599", "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"],
+    "tokenOracleIds": ["WBTC", "WETH"],
+    "decimals": [8, 18],
+    "oracleId": "uniswap-cow-ethereum-wbtc-weth",
+    "rewardPool": {
+      "address": "0xEF958E249c089fB2C378fDf5FedFb8A6D6374000",
+      "oracleId": "uniswap-cow-ethereum-wbtc-weth-rp"
+    }
+  },
+  {
+    "address": "0x136363cA1219c943a560F22EEfbb2bEB4c92Ef3c",
+    "lpAddress": "0x99ac8cA7087fA4A2A1FB6357269965A2014ABc35",
+    "tokens": ["0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599", "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"],
+    "tokenOracleIds": ["WBTC", "USDC"],
+    "decimals": [8, 6],
+    "oracleId": "uniswap-cow-ethereum-wbtc-usdc",
+    "rewardPool": {
+      "address": "0x7431d63132167d3DDd7990a90E26601d3EA9e6EB",
+      "oracleId": "uniswap-cow-ethereum-wbtc-usdc-rp"
+    }
+  },
+  {
+    "address": "0xDcfBFc35173EcF5A4451f86600b741cc365Ceb60",
+    "lpAddress": "0x4e68Ccd3E89f51C3074ca5072bbAC773960dFa36",
+    "tokens": ["0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", "0xdAC17F958D2ee523a2206206994597C13D831ec7"],
+    "tokenOracleIds": ["WETH", "USDT"],
+    "decimals": [18, 6],
+    "oracleId": "uniswap-cow-ethereum-weth-usdt",
+    "rewardPool": {
+      "address": "0x8e15FcAA3EB4F7b111C4D3dd237b36ca49331786",
+      "oracleId": "uniswap-cow-ethereum-weth-usdt-rp"
+    }
+  },
+  {
+    "address": "0xAE49310171dF9A46bF57B56e2672b99714b45980",
+    "lpAddress": "0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640",
+    "tokens": ["0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"],
+    "tokenOracleIds": ["USDC", "WETH"],
+    "decimals": [6, 18],
+    "oracleId": "uniswap-cow-ethereum-usdc-weth",
+    "rewardPool": {
+      "address": "0xa92a0DEfcB618143eA89245b00d28EDCb881819b",
+      "oracleId": "uniswap-cow-ethereum-usdc-weth-rp"
+    }
+  },
+  {
+    "address": "0xE97ce6404eA5847Bfcd11A6F7EB3Ff8f30F619eE",
+    "lpAddress": "0x1d42064Fc4Beb5F8aAF85F4617AE8b3b5B8Bd801",
+    "tokens": ["0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984", "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"],
+    "tokenOracleIds": ["UNI", "WETH"],
+    "decimals": [18, 18],
+    "oracleId": "uniswap-cow-ethereum-uni-weth",
+    "rewardPool": {
+      "address": "0x5fcA009de68595FC4f746F88429370a2A79E37D9",
+      "oracleId": "uniswap-cow-ethereum-uni-weth-rp"
+    }
+  },
+  {
+    "address": "0xeD64dD50515E6A1FE5a4B1a2F514B6e847514BE1",
+    "lpAddress": "0x5aB53EE1d50eeF2C1DD3d5402789cd27bB52c1bB",
+    "tokens": ["0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9", "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"],
+    "tokenOracleIds": ["AAVE", "WETH"],
+    "decimals": [18, 18],
+    "oracleId": "uniswap-cow-ethereum-aave-weth",
+    "rewardPool": {
+      "address": "0xA9101eF1288259bd61C4EedD852679C355aa29dB",
+      "oracleId": "uniswap-cow-ethereum-aave-weth-rp"
+    }
+  },
+  {
+    "address": "0x2Ae85f4A9c16e2dAa65c624452332f74314F2Ec8",
+    "lpAddress": "0xa6Cc3C2531FdaA6Ae1A3CA84c2855806728693e8",
+    "tokens": ["0x514910771AF9Ca656af840dff83E8264EcF986CA", "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"],
+    "tokenOracleIds": ["LINK", "WETH"],
+    "decimals": [18, 18],
+    "oracleId": "uniswap-cow-ethereum-link-weth",
+    "rewardPool": {
+      "address": "0x484966d04B230a110e594De2769EAf00449b2DBe",
+      "oracleId": "uniswap-cow-ethereum-link-weth-rp"
+    }
+  },
+  {
+    "address": "0x1f2E246a23D9E620F0c643e1239D77dDc5a82743",
+    "lpAddress": "0x53e3d506F468c4BC30cc8CaA21Eb7E56c2fA2D55",
+    "tokens": ["0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", "0xf280B16EF293D8e534e370794ef26bF312694126"],
+    "tokenOracleIds": ["WETH", "ASTEROID"],
+    "decimals": [18, 9],
+    "oracleId": "uniswap-cow-ethereum-weth-asteroid",
+    "rewardPool": {
+      "address": "0x8CEa55446F8C2314B3995C448Be8F04AeaABd5C4",
+      "oracleId": "uniswap-cow-ethereum-weth-asteroid-rp"
+    }
+  },
+  {
+    "address": "0x2f16815C6F7c705DEC15F28b40A4e63d9763a27E",
+    "lpAddress": "0x5aE13BAAEF0620FdaE1D355495Dc51a17adb4082",
+    "tokens": ["0x45804880De22913dAFE09f4980848ECE6EcbAf78", "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"],
+    "tokenOracleIds": ["PAXG", "USDC"],
+    "decimals": [18, 6],
+    "oracleId": "uniswap-cow-ethereum-paxg-usdc",
+    "rewardPool": {
+      "address": "0x846039AfB24E12fA36C60B03967F6E1967e97F29",
+      "oracleId": "uniswap-cow-ethereum-paxg-usdc-rp"
+    }
+  }
+]

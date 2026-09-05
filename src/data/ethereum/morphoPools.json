@@ -1,0 +1,256 @@
+[
+  {
+    "name": "morpho-v2-ethereum-armitage-pendle-ecosystem-usdc",
+    "address": "0x55C1B6e461a6334B567bAF0FEb5D728715446f05",
+    "oracle": "tokens",
+    "oracleId": "USDC",
+    "decimals": "1e6",
+    "v2": true,
+    "skim": true
+  },
+  {
+    "name": "morpho-v2-ethereum-clearstar-3jane-ecosystem-vault-usdc",
+    "address": "0xe05faDf242331808f504661BEA65972594869826",
+    "oracle": "tokens",
+    "oracleId": "USDC",
+    "decimals": "1e6",
+    "v2": true,
+    "skim": true
+  },
+  {
+    "name": "morpho-v2-ethereum-hyperithm-apex-cbbtc",
+    "address": "0xCdbe4A5B5bAd2BC04492052Df2F881B5727d034d",
+    "oracle": "tokens",
+    "oracleId": "cbBTC",
+    "decimals": "1e8",
+    "v2": true,
+    "skim": true
+  },
+  {
+    "name": "morpho-v2-ethereum-steakhouse-reservoir-usdc",
+    "address": "0xBEeFF047C03714965a54b671A37C18beF6b96210",
+    "oracle": "tokens",
+    "oracleId": "USDC",
+    "decimals": "1e6",
+    "v2": true,
+    "skim": true
+  },
+  {
+    "name": "morpho-v2-ethereum-steakhouse-reservoir-rusd",
+    "address": "0xBEeFf08E1887A11D91B9Ca68c133c08Ae3c4B44f",
+    "oracle": "tokens",
+    "oracleId": "ethrUSD",
+    "decimals": "1e18",
+    "v2": true,
+    "skim": true
+  },
+  {
+    "name": "morpho-v2-ethereum-steakhouse-prime-usdt",
+    "address": "0xbeef003C68896c7D2c3c60d363e8d71a49Ab2bf9",
+    "oracle": "tokens",
+    "oracleId": "USDT",
+    "decimals": "1e6",
+    "v2": true,
+    "skim": true
+  },
+  {
+    "name": "morpho-v2-ethereum-steakhouse-prime-usdc",
+    "address": "0xbeef088055857739C12CD3765F20b7679Def0f51",
+    "oracle": "tokens",
+    "oracleId": "USDC",
+    "decimals": "1e6",
+    "v2": true,
+    "skim": true
+  },
+  {
+    "name": "morpho-v2-ethereum-steakhouse-prime-instant-pyusd",
+    "address": "0xbeef00B5d83C1188F07A5184230a805639c39f04",
+    "oracle": "tokens",
+    "oracleId": "PYUSD",
+    "decimals": "1e6",
+    "v2": true,
+    "skim": true
+  },
+  {
+    "name": "morpho-v2-ethereum-steakhouse-high-yield-usdt",
+    "address": "0xbeeff07d991C04CD640DE9F15C08ba59c4FEDEb7",
+    "oracle": "tokens",
+    "oracleId": "USDT",
+    "decimals": "1e6",
+    "v2": true,
+    "skim": true
+  },
+  {
+    "name": "morpho-v2-ethereum-steakhouse-high-yield-instant-ausd",
+    "address": "0xbEeFf89ABb7815cCD5182BD1FF82C4a4F8FCb13D",
+    "oracle": "tokens",
+    "oracleId": "ethAUSD",
+    "decimals": "1e6",
+    "v2": true,
+    "skim": true
+  },
+  {
+    "name": "morpho-v2-ethereum-steakhouse-high-yield-usdc",
+    "address": "0xbeeff2C5bF38f90e3482a8b19F12E5a6D2FCa757",
+    "oracle": "tokens",
+    "oracleId": "USDC",
+    "decimals": "1e6",
+    "v2": true,
+    "skim": true
+  },
+  {
+    "name": "morpho-eth-sentora-pyusd",
+    "address": "0xb576765fB15505433aF24FEe2c0325895C559FB2",
+    "oracle": "tokens",
+    "oracleId": "PYUSD",
+    "decimals": "1e6",
+    "v2": true,
+    "skim": true
+  },
+  {
+    "name": "morpho-eth-gauntlet-frontier-usdc",
+    "address": "0x9a1D6bd5b8642C41F25e0958129B85f8E1176F3e",
+    "oracle": "tokens",
+    "oracleId": "USDC",
+    "decimals": "1e6",
+    "v2": true,
+    "skim": true
+  },
+  {
+    "name": "morpho-eth-steakhouse-prime-weth",
+    "address": "0xbeef0046fcab1dE47E41fB75BB3dC4Dfc94108E3",
+    "oracle": "tokens",
+    "oracleId": "WETH",
+    "decimals": "1e18",
+    "v2": true,
+    "skim": true
+  },
+  {
+    "name": "morpho-eth-api3-core-usdc",
+    "address": "0xe2221Aa07ec3266DA87763E2b1e28d07A8a4e53b",
+    "oracle": "tokens",
+    "oracleId": "USDC",
+    "decimals": "1e6",
+    "v2": true,
+    "skim": true
+  },
+  {
+    "name": "morpho-eth-gauntlet-prime-usdc",
+    "address": "0x8c106EEDAd96553e64287A5A6839c3Cc78afA3D0",
+    "oracle": "tokens",
+    "oracleId": "USDC",
+    "decimals": "1e6",
+    "v2": true,
+    "skim": true
+  },
+  {
+    "name": "morpho-eth-steakhouse-prime-usdt",
+    "address": "0xbeef003C68896c7D2c3c60d363e8d71a49Ab2bf9",
+    "oracle": "tokens",
+    "oracleId": "USDT",
+    "decimals": "1e6",
+    "v2": true,
+    "skim": true
+  },
+  {
+    "name": "morpho-eth-august-v2-usdc",
+    "address": "0x7ceB0f01Cb7187a2EBED5661eCC4d5701d8F2350",
+    "oracle": "tokens",
+    "oracleId": "USDC",
+    "decimals": "1e6",
+    "v2": true,
+    "skim": true
+  },
+  {
+    "name": "morpho-eth-kpk-usdc",
+    "address": "0x4Ef53d2cAa51C447fdFEEedee8F07FD1962C9ee6",
+    "oracle": "tokens",
+    "oracleId": "USDC",
+    "decimals": "1e6",
+    "v2": true,
+    "skim": true
+  },
+  {
+    "name": "morpho-eth-steakhouse-prime-usdc",
+    "address": "0xbeef088055857739C12CD3765F20b7679Def0f51",
+    "oracle": "tokens",
+    "oracleId": "USDC",
+    "decimals": "1e6",
+    "v2": true,
+    "skim": true
+  },
+  {
+    "name": "morpho-eth-steakhouse-high-yield-usdt",
+    "address": "0xbeeff07d991C04CD640DE9F15C08ba59c4FEDEb7",
+    "oracle": "tokens",
+    "oracleId": "USDT",
+    "decimals": "1e6",
+    "v2": true,
+    "skim": true
+  },
+  {
+    "name": "morpho-eth-steakhouse-prime-eurcv",
+    "address": "0xbeef0C075Da5D01112AE5cF34d257074fB5DDB2f",
+    "oracle": "tokens",
+    "oracleId": "EURCV",
+    "decimals": "1e18",
+    "v2": true,
+    "skim": true
+  },
+  {
+    "name": "morpho-imf-usds",
+    "address": "0xdef1Fce2df6270Fdf7E1214343BeBbaB8583D43d",
+    "oracle": "tokens",
+    "oracleId": "USDS",
+    "decimals": "1e18"
+  },
+  {
+    "name": "morpho-gauntlet-usdc",
+    "address": "0xc582F04d8a82795aa2Ff9c8bb4c1c889fe7b754e",
+    "oracle": "tokens",
+    "oracleId": "USDC",
+    "decimals": "1e6"
+  },
+  {
+    "name": "morpho-gauntlet-eusd",
+    "address": "0xc080f56504e0278828A403269DB945F6c6D6E014",
+    "oracle": "tokens",
+    "oracleId": "eUSD",
+    "decimals": "1e18"
+  },
+  {
+    "name": "morpho-steakhouse-usdc",
+    "address": "0xBEEF01735c132Ada46AA9aA4c54623cAA92A64CB",
+    "oracle": "tokens",
+    "oracleId": "USDC",
+    "decimals": "1e6"
+  },
+  {
+    "name": "morpho-steakhouse-weth",
+    "address": "0xBEEf050ecd6a16c4e7bfFbB52Ebba7846C4b8cD4",
+    "oracle": "tokens",
+    "oracleId": "WETH",
+    "decimals": "1e18"
+  },
+  {
+    "name": "morpho-steakhouse-wbtc",
+    "address": "0xbeEf094333AEdD535c130958c204E84f681FD9FA",
+    "oracle": "tokens",
+    "oracleId": "WBTC",
+    "decimals": "1e8"
+  },
+  {
+    "name": "morpho-smokehouse-usdc",
+    "address": "0xBEeFFF209270748ddd194831b3fa287a5386f5bC",
+    "oracle": "tokens",
+    "oracleId": "USDC",
+    "decimals": "1e6"
+  },
+  {
+    "name": "morpho-smokehouse-wsteth",
+    "address": "0x833AdaeF212c5cD3f78906B44bBfb18258F238F0",
+    "oracle": "tokens",
+    "oracleId": "wstETH",
+    "decimals": "1e18"
+  }
+]

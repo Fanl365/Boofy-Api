@@ -1,0 +1,13 @@
+[
+  {
+    "name": "aavev3-metis-metis",
+    "token": "0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000",
+    "aToken": "0x7314Ef2CA509490f65F52CC8FC9E0675C66390b8",
+    "debtToken": "0x0110174183e13D5Ea59D7512226c5D5A47bA2c40",
+    "oracle": "tokens",
+    "oracleId": "METIS",
+    "decimals": "1e18",
+    "borrowDepth": 1,
+    "borrowPercent": 0
+  }
+]

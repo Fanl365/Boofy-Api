@@ -1,0 +1,16 @@
+import type { PointsStructure } from './types.ts';
+
+export const getPointsStructures = async (): Promise<PointsStructure[]> => {
+  const endpoint = `https://raw.githubusercontent.com/boofyfinance/boofy-v2/prod/src/config/points.json`;
+  const response = await fetch(endpoint);
+  if (response.status !== 200) {
+    throw new Error(`Failed to fetch point structures: ${response.status} ${response.statusText}`);
+  }
+
+  const pointStructures = await response.json();
+  if (!pointStructures || !Array.isArray(pointStructures)) {
+    throw new Error(`Invalid point structure data`);
+  }
+
+  return pointStructures as PointsStructure[];
+};

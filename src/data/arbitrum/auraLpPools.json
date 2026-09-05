@@ -1,0 +1,61 @@
+[
+  {
+    "name": "aura-arb-ausdt-gyd",
+    "address": "0x7272163A931DaC5BBe1CB5feFaF959BB65F7346F",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0x66EeE72121E64Cd5fb67B306087511ca20B1956E",
+    "vaultPoolId": "0x7272163a931dac5bbe1cb5fefaf959bb65f7346f000200000000000000000549",
+    "decimals": "1e18",
+    "rewards": [
+      {
+        "rewardGauge": "0x102654A08c9B9CA3c5D88AF60A3BEc323Ef4F1bE",
+        "oracleId": "AURA",
+        "decimals": "1e18"
+      },
+      {
+        "rewardGauge": "0x2356C74a8DAA4d9671a8471713494150A24E4aA6",
+        "oracleId": "ARB",
+        "decimals": "1e18"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "stataArbUSDTn",
+        "decimals": "1e6"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "GYD",
+        "decimals": "1e18"
+      }
+    ]
+  },
+  {
+    "name": "aura-aurabal-wsteth",
+    "address": "0xc7FA3A3527435720f0e2a4c1378335324dd4F9b3",
+    "vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+    "gauge": "0x1597010ffE2e25a584D9705C1e48585BbfE56fC0",
+    "vaultPoolId": "0xc7fa3a3527435720f0e2a4c1378335324dd4f9b3000200000000000000000459",
+    "decimals": "1e18",
+    "rewards": [
+      {
+        "rewardGauge": "0x7Ee4Dc875Dbd5f8f864E7E3EE93Af862316bb3E0",
+        "oracleId": "ARB",
+        "decimals": "1e18"
+      }
+    ],
+    "tokens": [
+      {
+        "oracle": "tokens",
+        "oracleId": "auraBAL",
+        "decimals": "1e18"
+      },
+      {
+        "oracle": "tokens",
+        "oracleId": "wstETH",
+        "decimals": "1e18"
+      }
+    ]
+  }
+]

@@ -1,0 +1,78 @@
+[
+  {
+    "name": "netswap-m.usdt-m.usdc",
+    "address": "0x1caD5f8f5D4C0AD49646B2565CC0cA725E4280EA",
+    "decimals": "1e18",
+    "poolId": 10,
+    "chainId": 1088,
+    "lp0": {
+      "address": "0xbB06DCA3AE6887fAbF931640f67cab3e3a16F4dC",
+      "oracle": "tokens",
+      "oracleId": "USDT",
+      "decimals": "1e6"
+    },
+    "lp1": {
+      "address": "0xEA32A96608495e54156Ae48931A7c20f0dcc1a21",
+      "oracle": "tokens",
+      "oracleId": "USDC",
+      "decimals": "1e6"
+    }
+  },
+  {
+    "name": "netswap-metis-m.usdc",
+    "address": "0x5Ae3ee7fBB3Cb28C17e7ADc3a6Ae605ae2465091",
+    "decimals": "1e18",
+    "poolId": 7,
+    "chainId": 1088,
+    "lp0": {
+      "address": "0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000",
+      "oracle": "tokens",
+      "oracleId": "METIS",
+      "decimals": "1e18"
+    },
+    "lp1": {
+      "address": "0xEA32A96608495e54156Ae48931A7c20f0dcc1a21",
+      "oracle": "tokens",
+      "oracleId": "USDC",
+      "decimals": "1e6"
+    }
+  },
+  {
+    "name": "netswap-nett-metis",
+    "address": "0x60312d4EbBF3617d3D33841906b5868A86931Cbd",
+    "decimals": "1e18",
+    "poolId": 2,
+    "chainId": 1088,
+    "lp0": {
+      "address": "0x90fE084F877C65e1b577c7b2eA64B8D8dd1AB278",
+      "oracle": "tokens",
+      "oracleId": "NETT",
+      "decimals": "1e18"
+    },
+    "lp1": {
+      "address": "0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000",
+      "oracle": "tokens",
+      "oracleId": "METIS",
+      "decimals": "1e18"
+    }
+  },
+  {
+    "name": "netswap-weth-metis",
+    "address": "0x59051B5F5172b69E66869048Dc69D35dB0B3610d",
+    "decimals": "1e18",
+    "poolId": 5,
+    "chainId": 1088,
+    "lp0": {
+      "address": "0x420000000000000000000000000000000000000A",
+      "oracle": "tokens",
+      "oracleId": "WETH",
+      "decimals": "1e18"
+    },
+    "lp1": {
+      "address": "0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000",
+      "oracle": "tokens",
+      "oracleId": "METIS",
+      "decimals": "1e18"
+    }
+  }
+]

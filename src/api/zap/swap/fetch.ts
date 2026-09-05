@@ -1,0 +1,219 @@
+import { partition, uniqBy } from 'lodash-es';
+import type { ApiChain } from '../../../utils/chain.ts';
+import { getLoggerFor } from '../../../utils/logger/index.ts';
+import { isValidPrice } from '../../../utils/prices.ts';
+import { redactSecrets } from '../../../utils/secrets.ts';
+import { getAmmAllPrices } from '../../stats/getAmmPrices.ts';
+import { getSingleChainCowVaults, getSingleChainVaults } from '../../stats/getMultichainVaults.ts';
+import { getTokenById, getTokenNative, getTokenWrappedNative, isTokenErc20 } from '../../tokens/tokens.ts';
+import type { TokenEntity, TokenErc20 } from '../../tokens/types.ts';
+import { blockedTokensByChain } from './blocked-tokens.ts';
+import { checkBuy } from './buy.ts';
+import type { ISwapProvider } from './providers/ISwapProvider.ts';
+import { type ProviderId, providers, providersById } from './providers/index.ts';
+import { checkSell } from './sell.ts';
+import {
+  type BuyTestToken,
+  isBuyResultSupported,
+  isSellResultSupported,
+  type SellTestToken,
+  type TokenSupportByAddress,
+} from './types.ts';
+
+const logger = getLoggerFor({ module: 'zap' });
+
+async function getTokensForChain(apiChain: ApiChain): Promise<TokenErc20[]> {
+  const vaults = getSingleChainVaults(apiChain) || [];
+  const cowVaults = getSingleChainCowVaults(apiChain) || [];
+  if (!vaults.length && !cowVaults.length) {
+    return [];
+  }
+
+  const allVaults = [...vaults, ...cowVaults];
+  const tokens = allVaults.reduce((acc, vault) => {
+    if (vault.assets && vault.assets.length) {
+      for (const assetId of vault.assets) {
+        const assetToken = getTokenById(assetId, apiChain);
+        if (assetToken) {
+          acc.push(assetToken);
+        }
+      }
+    }
+
+    return acc;
+  }, [] as TokenEntity[]);
+
+  const uniqueTokens = uniqBy(tokens, 'address').filter(isTokenErc20);
+  const blockedTokens = (blockedTokensByChain as Partial<Record<ApiChain, Set<string>>>)[apiChain];
+  if (blockedTokens && blockedTokens.size) {
+    return uniqueTokens.filter(token => !blockedTokens.has(token.address));
+  }
+
+  return uniqueTokens;
+}
+
+function markTokensUnsupported(byAddress: TokenSupportByAddress, tokens: TokenEntity[], reason: string) {
+  const updatedAt = Date.now();
+  for (const token of tokens) {
+    byAddress[token.address] = {
+      supported: false,
+      updatedAt,
+      reason: redactSecrets(reason),
+    };
+  }
+  return byAddress;
+}
+
+function markTokensSupported(byAddress: TokenSupportByAddress, tokens: TokenEntity[]) {
+  const updatedAt = Date.now();
+  for (const token of tokens) {
+    byAddress[token.address] = {
+      supported: true,
+      updatedAt,
+    };
+  }
+  return byAddress;
+}
+
+function markTokenUnsupported(byAddress: TokenSupportByAddress, token: TokenEntity, reason: string) {
+  byAddress[token.address] = {
+    supported: false,
+    updatedAt: Date.now(),
+    reason: redactSecrets(reason),
+  };
+  return byAddress;
+}
+
+function markTokenSupported(byAddress: TokenSupportByAddress, token: TokenEntity) {
+  byAddress[token.address] = {
+    supported: true,
+    updatedAt: Date.now(),
+  };
+  return byAddress;
+}
+
+function getProviderForChain(providerKey: ProviderId, apiChain: ApiChain): ISwapProvider | undefined {
+  const provider = providersById[providerKey];
+  if (!provider) {
+    return undefined;
+  }
+
+  if (!provider.supportsChain(apiChain)) {
+    return undefined;
+  }
+
+  return provider;
+}
+
+export function getProvidersForChain(apiChain: ApiChain): ProviderId[] {
+  return providers.filter(({ instance }) => instance.supportsChain(apiChain)).map(({ id }) => id);
+}
+
+export async function fetchProviderSupportForChainTokens(
+  providerKey: ProviderId,
+  apiChain: ApiChain,
+  maxPriceImpact: number,
+  checkAmount: number
+): Promise<TokenSupportByAddress> {
+  const minOutputRatio = 1 - maxPriceImpact;
+  const supportByAddress: TokenSupportByAddress = {};
+
+  // Get tokens for chain
+  const allTokens = await getTokensForChain(apiChain);
+  if (allTokens.length === 0) {
+    logger.warn({ chain: apiChain }, 'no tokens found for chain, skipping');
+    return supportByAddress;
+  }
+
+  // Check provider exists
+  const provider = getProviderForChain(providerKey, apiChain);
+  if (!provider) {
+    return markTokensUnsupported(
+      supportByAddress,
+      allTokens,
+      `Provider ${providerKey} does not support chain ${apiChain}`
+    );
+  }
+
+  const boofyPrices = await getAmmAllPrices();
+  const native = getTokenNative(apiChain);
+  const wnative = getTokenWrappedNative(apiChain);
+  const wnativePrice = boofyPrices[wnative.oracleId];
+  if (!isValidPrice(wnativePrice)) {
+    return markTokensUnsupported(
+      supportByAddress,
+      allTokens,
+      `Invalid wnative price via oracle ${wnative.oracleId} on chain ${apiChain}`
+    );
+  }
+
+  // Don't check wnative itself, since we check other tokens via this
+  const tokensToCheck = allTokens.filter(token => token.address !== wnative.address);
+
+  // Check tokens have a price
+  const wnativeWithPrice = { token: wnative, price: wnativePrice };
+  const tokenPrices: (number | undefined)[] = tokensToCheck.map(token =>
+    token.oracleId && isValidPrice(boofyPrices[token.oracleId]) ? boofyPrices[token.oracleId] : undefined
+  );
+
+  const buyTestTokens: BuyTestToken[] = tokensToCheck.reduce((acc, token, index) => {
+    if (tokenPrices[index] !== undefined) {
+      acc.push({
+        token,
+        price: tokenPrices[index]!,
+      });
+    } else {
+      markTokenUnsupported(
+        supportByAddress,
+        token,
+        `Token ${token.symbol} does not have a price via oracle ${token.oracleId}`
+      );
+    }
+
+    return acc;
+  }, [] as BuyTestToken[]);
+
+  // Check we can buy token for native
+  const buyResults = await checkBuy(
+    provider,
+    providerKey,
+    apiChain,
+    wnativeWithPrice,
+    buyTestTokens,
+    checkAmount,
+    minOutputRatio
+  );
+  const [buySupported, buyUnsupported] = partition(buyResults, isBuyResultSupported);
+
+  buyUnsupported.forEach(({ reason, tokenWithPrice }) =>
+    markTokenUnsupported(supportByAddress, tokenWithPrice.token, reason)
+  );
+
+  // Check we can sell token to native
+  const sellTestTokens: SellTestToken[] = buySupported.map(({ tokenWithPrice }) => tokenWithPrice);
+  const sellResults = await checkSell(
+    provider,
+    providerKey,
+    apiChain,
+    wnativeWithPrice,
+    sellTestTokens,
+    checkAmount,
+    minOutputRatio
+  );
+  const [sellSupported, sellUnsupported] = partition(sellResults, isSellResultSupported);
+
+  sellUnsupported.forEach(({ reason, tokenWithPrice }) =>
+    markTokenUnsupported(supportByAddress, tokenWithPrice.token, reason)
+  );
+  sellSupported.forEach(({ tokenWithPrice }) => markTokenSupported(supportByAddress, tokenWithPrice.token));
+
+  if (Object.values(supportByAddress).some(s => s.supported)) {
+    // mark native/wnative supported if anything else is supported
+    markTokensSupported(supportByAddress, [native, wnative]);
+  } else {
+    // mark native/wnative unsupported if nothing else is supported, so we don't attempt any swaps via this provider
+    markTokensUnsupported(supportByAddress, [native, wnative], 'No other supported tokens, likely API problem');
+  }
+
+  return supportByAddress;
+}

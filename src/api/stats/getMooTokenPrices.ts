@@ -1,0 +1,92 @@
+import type { PricesById } from '../../types/prices.ts';
+import { BIG_ZERO, isFiniteBigNumber } from '../../utils/big-number.ts';
+import { getKey, setKey } from '../../utils/cache/index.ts';
+import { envNumber } from '../../utils/env.ts';
+import { fetchPrice } from '../../utils/fetchPrice.ts';
+import { getLoggerFor } from '../../utils/logger/index.ts';
+import { isValidPrice } from '../../utils/prices.ts';
+import { serviceEventBus } from '../../utils/ServiceEventBus.ts';
+import { getMultichainVaults } from './getMultichainVaults.ts';
+
+const logger = getLoggerFor({ module: 'prices' });
+
+let mooTokenPrices: Record<string, PricesById> = {};
+
+const INIT_DELAY = envNumber('MOOTOKEN_INIT_DELAY', 60 * 1000);
+const REFRESH_INTERVAL = 60 * 1000;
+
+export const getMooTokenPrices = () => {
+  return mooTokenPrices;
+};
+
+const updateMooTokenPrices = async () => {
+  const vaults = getMultichainVaults();
+  const now = Date.now();
+  const thirtyDaysAgo = Math.floor(now / 1000) - 30 * 24 * 60 * 60;
+  let successes = 0,
+    missing = 0,
+    failures = 0;
+
+  logger.info('updating mooToken prices');
+
+  for (const vault of vaults) {
+    try {
+      // All vaults should have a PPFS
+      if (!isFiniteBigNumber(vault.pricePerFullShare) || vault.pricePerFullShare.lte(BIG_ZERO)) {
+        throw new Error(`No pricePerFullShare for vault ${vault.id}`);
+      }
+
+      // If the vault is EOL and was retired more than 30 days ago, don't output message on missing price
+      const isOldEol = vault.status === 'eol' && (vault.retiredAt || now) < thirtyDaysAgo;
+      const price = await fetchPrice(
+        { oracle: vault.oracle, id: vault.oracleId },
+        isOldEol ? false : `oracleId of ${vault.id} on ${vault.chain} in updateMooTokenPrices`
+      );
+
+      // Skip vault if price is missing
+      if (!isValidPrice(price)) {
+        ++missing;
+        continue;
+      }
+
+      // Price per share
+      const mooPrice = vault.pricePerFullShare.times(price).dividedBy(1e18);
+
+      // Save
+      if (!mooTokenPrices[vault.chain]) {
+        mooTokenPrices[vault.chain] = {};
+      }
+      mooTokenPrices[vault.chain][vault.earnedToken] = mooPrice.toNumber();
+      ++successes;
+    } catch (error) {
+      ++failures;
+      logger.debug({ vault: vault.id, err: error }, 'failed to update mooPrice');
+    }
+  }
+
+  const level = failures > 0 ? 'error' : missing > 0 ? 'warn' : 'info';
+  logger[level]({ successes, missing, failures, durationMs: Date.now() - now }, 'mooToken prices updated');
+
+  saveToRedis().catch(err => {
+    logger.error({ err }, 'failed to save mooToken prices');
+  });
+
+  setTimeout(updateMooTokenPrices, REFRESH_INTERVAL);
+};
+
+export const initMooTokenPriceService = async () => {
+  const cachedMooTokenPrices = await getKey<Record<string, PricesById>>('MOO_TOKEN_PRICES');
+  mooTokenPrices = cachedMooTokenPrices ?? {};
+
+  await Promise.all([
+    serviceEventBus.waitForFirstEvent('vaults/updated'),
+    serviceEventBus.waitForFirstEvent('prices/tokens/updated'),
+    serviceEventBus.waitForFirstEvent('prices/lps/updated'),
+  ]);
+
+  setTimeout(updateMooTokenPrices, INIT_DELAY);
+};
+
+const saveToRedis = async () => {
+  await setKey('MOO_TOKEN_PRICES', mooTokenPrices);
+};

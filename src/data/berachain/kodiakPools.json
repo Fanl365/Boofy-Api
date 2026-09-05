@@ -1,0 +1,68 @@
+[
+  {
+    "name": "kodiak-susde-honey",
+    "address": "0xD5B6EA3544a51BfdDa7E6926BdF778339801dFe8",
+    "gauge": "0xd042c637765fdACEbFBAFe553d8e78D8d1179fB1",
+    "tokens": ["sUSDe", "HONEY"]
+  },
+  {
+    "name": "kodiak-usde-honey",
+    "address": "0xE5A2ab5D2fb268E5fF43A5564e44c3309609aFF9",
+    "gauge": "0x197FbF0532B1843d4c077C0C53e58d5AC000ce35",
+    "tokens": ["USDe", "HONEY"]
+  },
+  {
+    "name": "kodiak-dolo-bera",
+    "address": "0x5e4Fe86C4f6fB2203fbFb77FD6eC3Cb300B639AA",
+    "gauge": "0xA23701E0554B4d519e7dA177901C46217cb35cf4",
+    "tokens": ["DOLO", "WBERA"]
+  },
+  {
+    "name": "kodiak-bera-honey",
+    "address": "0x4a254B11810B8EBb63C5468E438FC561Cb1bB1da",
+    "gauge": "0x418D63947889e55C16280Cb7785cF84EF081F224",
+    "tokens": ["WBERA", "HONEY"]
+  },
+  {
+    "name": "kodiak-usdbr-honey",
+    "address": "0x28a54EaeEc63fBb1175d13466a9ada5f3175D577",
+    "gauge": "0xd3B4c14d7eb1701271Ffe67ac4E2074C873027CB",
+    "tokens": ["USDbr", "HONEY"]
+  },
+  {
+    "name": "kodiak-wbtc-bera",
+    "address": "0xF06EA29FCF4765200742d29E685973a1870EaC98",
+    "gauge": "0x8Ea5F10E039C718e9991108E795CdC154c3008A9",
+    "tokens": ["WBTC", "WBERA"]
+  },
+  {
+    "name": "kodiak-bera-nav",
+    "address": "0xEf8C3239E0D8Be9d58f145E18F5909Ddad681365",
+    "gauge": "0x19A13d1855b6ed39EDF1e3A8343Ae8CFfECDf498",
+    "tokens": ["NAV", "WBERA"]
+  },
+  {
+    "name": "kodiak-bera-bm",
+    "address": "0x0FD67ac75F9DF51f5d81F582417B318F44b45f5c",
+    "gauge": "0xD2d46C07C32236e7BdAFF782518b200342F12A58",
+    "tokens": ["WBERA", "bm"]
+  },
+  {
+    "name": "kodiak-ohm-honey",
+    "address": "0x98bDEEde9A45C28d229285d9d6e9139e9F505391",
+    "gauge": "0xa57Cb177Beebc35A1A26A286951a306d9B752524",
+    "tokens": ["OHM", "HONEY"]
+  },
+  {
+    "name": "kodiak-bera-ibera",
+    "address": "0xE3EeB9e48934634d8B5B39A0d15DD89eE0F969C4",
+    "gauge": "0x5F044B3bf3fA10d51AB157998C70D07807BAF5C4",
+    "tokens": ["WBERA", "iBERA"]
+  },
+  {
+    "name": "kodiak-bera-ibgt",
+    "address": "0x564f011D557aAd1cA09BFC956Eb8a17C35d490e0",
+    "gauge": "0xE1897e3eb930AAd6f9ea9eCF96EA846B5D23b0a6",
+    "tokens": ["WBERA", "iBGT"]
+  }
+]

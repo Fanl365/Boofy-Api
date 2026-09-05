@@ -1,0 +1,326 @@
+import { addressBookByChainId } from '@beefyfinance/blockchain-addressbook';
+import type { ChainId } from '@beefyfinance/blockchain-addressbook/types/chainid';
+import type { TokenWithId } from '@beefyfinance/blockchain-addressbook/types/token';
+import type { BigNumber } from 'bignumber.js';
+import { getUnixTime } from 'date-fns';
+import type { GetContractReturnType } from 'viem';
+import { type Address, type Client, getAddress } from 'viem';
+import ERC20Abi from '../../../abis/ERC20Abi.ts';
+import { IBoofyRewardPool } from '../../../abis/IBoofyRewardPool.ts';
+import { ZERO_ADDRESS } from '../../../utils/address.ts';
+import { isDefined, isNonEmptyArray, type NonEmptyArray } from '../../../utils/array.ts';
+import { BIG_ONE, BIG_ZERO, fromWei, toBigNumber } from '../../../utils/big-number.ts';
+import { envBoolean } from '../../../utils/env.ts';
+import { getLoggerFor } from '../../../utils/logger/index.ts';
+import { isFiniteNumber } from '../../../utils/number.ts';
+import { isResultFulfilled } from '../../../utils/promise.ts';
+import { SECONDS_PER_YEAR } from '../../../utils/time.ts';
+import { fetchContract } from '../../rpc/client.ts';
+import { getAmmPrice } from '../getAmmPrices.ts';
+
+const logger = getLoggerFor({ module: 'apy', component: 'boofyRewardPoolV2' });
+
+const WARN_STAKED_IS_ZERO: boolean = false;
+const WARN_STAKED_MISSING_PRICE: boolean = true;
+const WARN_REWARDS_NONE_IN_CONTRACT: boolean = false;
+const WARN_REWARDS_NONE_IN_ADDRESS_BOOK: boolean = true;
+const WARN_REWARDS_SOME_IN_ADDRESS_BOOK: boolean = true;
+const WARN_REWARD_INFO_REVERT: boolean = true;
+const WARN_REWARDS_ALL_INFO_REVERT: boolean = false;
+const WARN_REWARDS_ALL_INACTIVE: boolean = envBoolean('WARN_REWARDS_ALL_INACTIVE', true);
+const WARN_REWARD_PRICE_THREW: boolean = true;
+const WARN_REWARD_PRICE_MISSING: boolean = true;
+const WARN_REWARDS_ALL_MISSING_PRICE: boolean = false;
+
+export type Token = {
+  address: Address;
+  oracleId: string;
+  decimals: number;
+};
+
+export type StakedToken = Token & {
+  /** needed if standard vault; must be in wei */
+  pricePerFullShare?: BigNumber;
+};
+
+export type RewardConfig = Token & {
+  id: number;
+};
+
+type RewardConfigPrice = RewardConfig & {
+  price: number;
+};
+
+type RewardConfigInfo = RewardConfigPrice & {
+  periodFinish: bigint;
+  duration: bigint;
+  lastUpdateTime: bigint;
+  rewardRate: bigint;
+};
+
+export type BoofyRewardPoolV2Config = {
+  oracleId: string;
+  address: Address;
+  stakedToken: StakedToken;
+  rewards?: NonEmptyArray<RewardConfig> | undefined;
+};
+
+type RewardYearlyUsd = RewardConfigInfo & {
+  yearlyUsd: BigNumber;
+};
+
+export type RewardApr = RewardConfigPrice & {
+  apr: number;
+};
+
+export type BoofyRewardPoolV2Result = Pick<BoofyRewardPoolV2Config, 'oracleId' | 'address' | 'stakedToken'> & {
+  chainId: ChainId;
+  totalApr?: number | undefined;
+  rewardsApr?: Array<RewardApr> | undefined;
+};
+
+/**
+ * gets apr for boofy V2 reward pools with multi token support
+ * @param chainId
+ * @param pools if you provide rewards array it will use those instead of fetching from contract
+ * @returns successful results only
+ */
+export const getBoofyRewardPoolV2Aprs = async (
+  chainId: ChainId,
+  pools: BoofyRewardPoolV2Config[]
+): Promise<BoofyRewardPoolV2Result[]> => {
+  const results = await Promise.allSettled(pools.map(pool => getBoofyRewardPoolV2Apr(chainId, pool)));
+  return results
+    .filter(isResultFulfilled)
+    .map(result => result.value)
+    .filter(isDefined);
+};
+
+/**
+ * gets apr for boofy V2 reward pools with multi token support
+ * @param chainId
+ * @param pool if you provide rewards array it will use those instead of fetching from contract
+ * @returns successful result or undefined
+ */
+export const getBoofyRewardPoolV2Apr = async (
+  chainId: ChainId,
+  pool: BoofyRewardPoolV2Config
+): Promise<BoofyRewardPoolV2Result | undefined> => {
+  try {
+    const [yearlyRewardsInUsd, totalStakedInUsd] = await Promise.all([
+      getYearlyRewardsInUsd(chainId, pool),
+      getTotalStakedInUsd(chainId, pool),
+    ]);
+
+    const rewardsApr: RewardApr[] = yearlyRewardsInUsd.map(reward => ({
+      ...reward,
+      apr: totalStakedInUsd.isZero() ? 0 : reward.yearlyUsd.dividedBy(totalStakedInUsd).toNumber(),
+    }));
+    const totalApr = rewardsApr.reduce((acc, reward) => acc + reward.apr, 0);
+
+    return {
+      address: pool.address,
+      chainId,
+      oracleId: pool.oracleId,
+      stakedToken: pool.stakedToken,
+      totalApr,
+      rewardsApr,
+    };
+  } catch (err) {
+    logger.warn({ chain: chainId, vault: pool.oracleId, err }, 'reward pool apr calculation failed');
+    return undefined;
+  }
+};
+
+async function getRewardConfigsFromContract(
+  pool: BoofyRewardPoolV2Config,
+  rewardPoolContract: GetContractReturnType<typeof IBoofyRewardPool, Client>,
+  tokenAddressMap: Record<string, TokenWithId>
+): Promise<RewardConfig[]> {
+  const [rewardAddresses] = await rewardPoolContract.read.earned([ZERO_ADDRESS] as const);
+  if (rewardAddresses.length === 0) {
+    if (WARN_REWARDS_NONE_IN_CONTRACT) {
+      logger.warn({ vault: pool.oracleId }, 'no rewards found via contract');
+    }
+    return [];
+  }
+
+  const rewardsInAddressBook: RewardConfig[] = rewardAddresses
+    .map((address, index) => {
+      const token = tokenAddressMap[address] || undefined;
+      return token
+        ? {
+            id: index,
+            address: getAddress(token.address),
+            oracleId: token.oracleId || token.id,
+            decimals: token.decimals,
+          }
+        : undefined;
+    })
+    .filter(isDefined);
+
+  if (rewardsInAddressBook.length === 0) {
+    if (WARN_REWARDS_NONE_IN_ADDRESS_BOOK) {
+      logger.warn({ vault: pool.oracleId }, 'no contract rewards are in the address book');
+    }
+    return [];
+  }
+
+  if (rewardsInAddressBook.length < rewardAddresses.length) {
+    if (WARN_REWARDS_SOME_IN_ADDRESS_BOOK) {
+      logger.warn({ vault: pool.oracleId, rewardAddresses }, 'some contract rewards are not in the address book');
+    }
+  }
+
+  return rewardsInAddressBook;
+}
+
+async function getRewardConfigsPrices(
+  pool: BoofyRewardPoolV2Config,
+  rewards: NonEmptyArray<RewardConfig>
+): Promise<RewardConfigPrice[] | undefined> {
+  const prices = await Promise.allSettled(rewards.map(reward => getAmmPrice(reward.oracleId)));
+  const rewardsWithPrices = rewards
+    .map((reward, index) => {
+      const price = prices[index];
+      if (price.status === 'rejected') {
+        if (WARN_REWARD_PRICE_THREW) {
+          logger.warn(
+            { vault: pool.oracleId, reward: reward.oracleId, err: price.reason },
+            'failed to get reward price'
+          );
+        }
+        return undefined;
+      }
+      if (!isFiniteNumber(price.value)) {
+        if (WARN_REWARD_PRICE_MISSING) {
+          logger.warn({ vault: pool.oracleId, reward: reward.oracleId }, 'reward price is not a finite number');
+        }
+        return undefined;
+      }
+
+      return { ...reward, price: price.value };
+    })
+    .filter(isDefined);
+
+  if (rewardsWithPrices.length === 0) {
+    if (WARN_REWARDS_ALL_MISSING_PRICE) {
+      logger.warn({ vault: pool.oracleId }, 'no rewards have prices');
+    }
+    return [];
+  }
+
+  return rewardsWithPrices;
+}
+
+async function getRewardConfigsInfo(
+  pool: BoofyRewardPoolV2Config,
+  rewards: NonEmptyArray<RewardConfigPrice>,
+  rewardPoolContract: GetContractReturnType<typeof IBoofyRewardPool, Client>
+): Promise<RewardConfigInfo[]> {
+  const rewardsInfo = await Promise.allSettled(
+    rewards.map(reward => rewardPoolContract.read.rewardInfo([BigInt(reward.id)]))
+  );
+
+  const rewardsWithInfo = rewards
+    .map((reward, index) => {
+      const info = rewardsInfo[index];
+      if (info.status === 'rejected') {
+        if (WARN_REWARD_INFO_REVERT) {
+          logger.warn(
+            { vault: pool.oracleId, reward: reward.oracleId, rewardId: reward.id, err: info.reason },
+            'failed to get reward info'
+          );
+        }
+        return undefined;
+      }
+
+      const [address, periodFinish, duration, lastUpdateTime, rewardRate] = info.value;
+      return {
+        ...reward,
+        address,
+        periodFinish,
+        duration,
+        lastUpdateTime,
+        rewardRate,
+      };
+    })
+    .filter(isDefined);
+
+  if (rewardsWithInfo.length === 0) {
+    if (WARN_REWARDS_ALL_INFO_REVERT) {
+      logger.warn({ vault: pool.oracleId }, 'no rewards have reward info');
+    }
+    return [];
+  }
+
+  const now = getUnixTime(new Date());
+  const activeRewards = rewardsWithInfo.filter(reward => reward.periodFinish > now);
+
+  if (activeRewards.length === 0) {
+    if (WARN_REWARDS_ALL_INACTIVE) {
+      // console.warn(`getRewardConfigsInfo for ${pool.oracleId}: no rewards are active`);
+    }
+    return [];
+  }
+
+  return activeRewards;
+}
+
+async function getYearlyRewardsInUsd(chainId: ChainId, pool: BoofyRewardPoolV2Config): Promise<RewardYearlyUsd[]> {
+  const rewardPoolContract = fetchContract(pool.address, IBoofyRewardPool, chainId);
+  const rewardConfigs =
+    pool.rewards && pool.rewards.length > 0
+      ? pool.rewards
+      : await getRewardConfigsFromContract(pool, rewardPoolContract, addressBookByChainId[chainId].tokenAddressMap);
+  if (!isNonEmptyArray(rewardConfigs)) {
+    return [];
+  }
+
+  const rewardsWithPrices = await getRewardConfigsPrices(pool, rewardConfigs);
+  if (!isNonEmptyArray(rewardsWithPrices)) {
+    return [];
+  }
+
+  const rewardsWithInfo = await getRewardConfigsInfo(pool, rewardsWithPrices, rewardPoolContract);
+  if (!isNonEmptyArray(rewardsWithInfo)) {
+    return [];
+  }
+
+  return rewardsWithInfo.map(reward => ({
+    ...reward,
+    yearlyUsd: fromWei(toBigNumber(reward.rewardRate), reward.decimals).times(reward.price).times(SECONDS_PER_YEAR),
+  }));
+}
+
+async function getTotalStakedInUsd(chainId: ChainId, pool: BoofyRewardPoolV2Config): Promise<BigNumber> {
+  const stakedTokenContract = fetchContract(pool.stakedToken.address, ERC20Abi, chainId);
+
+  const [price, totalStaked] = await Promise.all([
+    getAmmPrice(pool.stakedToken.oracleId),
+    stakedTokenContract.read.balanceOf([pool.address]),
+  ]);
+
+  if (totalStaked === 0n) {
+    if (WARN_STAKED_IS_ZERO) {
+      logger.warn({ chain: chainId, vault: pool.oracleId }, 'total staked is zero');
+    }
+    return BIG_ZERO;
+  }
+
+  if (!isFiniteNumber(price)) {
+    if (WARN_STAKED_MISSING_PRICE) {
+      logger.warn(
+        { chain: chainId, vault: pool.oracleId, underlying: pool.stakedToken.oracleId },
+        'failed to get price for staked underlying'
+      );
+    }
+    return BIG_ZERO;
+  }
+
+  // shares -> want (if pricePerFullShare is provided)
+  const totalUnderlyingStaked = fromWei(toBigNumber(totalStaked), pool.stakedToken.decimals).times(
+    pool.stakedToken.pricePerFullShare ? pool.stakedToken.pricePerFullShare.shiftedBy(-18) : BIG_ONE
+  );
+  return totalUnderlyingStaked.times(price);
+}

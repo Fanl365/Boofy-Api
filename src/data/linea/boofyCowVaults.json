@@ -1,0 +1,106 @@
+[
+  {
+    "address": "0xbCA33EF858AC847282798AE1f392455a8a1Fe0dB",
+    "lpAddress": "0x73045fe421F1F1719946cc664cf6020b0c183854",
+    "tokens": ["0x1789e0043623282D5DCc7F213d703C6D8BAfBB04", "0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f"],
+    "tokenOracleIds": ["LINEA", "WETH"],
+    "decimals": [18, 18],
+    "oracleId": "etherex-cow-linea-linea-weth",
+    "providerId": "etherex",
+    "rewardPool": {
+      "address": "0xCa80925463d639C152733D4dC2E26C7045C1Db77",
+      "oracleId": "etherex-cow-linea-linea-weth-rp"
+    },
+    "vault": {
+      "address": "0xDdBba73410c726A811aC4c659a6CD752b199845E",
+      "oracleId": "etherex-cow-linea-linea-weth-vault"
+    }
+  },
+  {
+    "address": "0x63Aad53CA20CE2b41d43FD7A0441f82895a38606",
+    "lpAddress": "0xd5E04ba35908D7bF5BD2eAd7e3e14d21df07DC01",
+    "tokens": ["0xA219439258ca9da29E9Cc4cE5596924745e12B93", "0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f"],
+    "tokenOracleIds": ["USDT", "WETH"],
+    "decimals": [6, 18],
+    "oracleId": "etherex-cow-linea-usdt-weth",
+    "providerId": "etherex",
+    "rewardPool": {
+      "address": "0xb966288D100438aC61C2f6E2A9c96eb2D5F8a6cC",
+      "oracleId": "etherex-cow-linea-usdt-weth-rp"
+    },
+    "vault": {
+      "address": "0x290904B0F083Ee9910a03B6B488028fBFA314747",
+      "oracleId": "etherex-cow-linea-usdt-weth-vault"
+    }
+  },
+  {
+    "address": "0x31E49E6ee2111E223b4277F9590f8bc8C680c608",
+    "lpAddress": "0xC0Cd56E070e25913D631876218609F2191dA1c2A",
+    "tokens": ["0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4", "0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f"],
+    "tokenOracleIds": ["WBTC", "WETH"],
+    "decimals": [8, 18],
+    "oracleId": "etherex-cow-linea-wbtc-weth",
+    "providerId": "etherex",
+    "rewardPool": {
+      "address": "0x27FF91f2c55E9481cFc2b9aC1349F8140045B4c7",
+      "oracleId": "etherex-cow-linea-wbtc-weth-rp"
+    },
+    "vault": {
+      "address": "0x5c4046B8753eFD1D2b72af03b60B1739E2c098f8",
+      "oracleId": "etherex-cow-linea-wbtc-weth-vault"
+    }
+  },
+  {
+    "address": "0x08Ec5A6b97Dfa10cE51627E6C9deecfFcb640216",
+    "lpAddress": "0x90E8a5b881D211f418d77Ba8978788b62544914B",
+    "tokens": ["0x176211869cA2b568f2A7D4EE941E073a821EE1ff", "0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f"],
+    "tokenOracleIds": ["USDC", "WETH"],
+    "decimals": [6, 18],
+    "oracleId": "etherex-cow-linea-usdc-weth",
+    "providerId": "etherex",
+    "rewardPool": {
+      "address": "0xE39A8C7B7DCe5F180DFD933AAE659fa730D36B14",
+      "oracleId": "etherex-cow-linea-usdc-weth-rp"
+    },
+    "vault": {
+      "address": "0x948F9C4A2B4126c03023AfaB46E712cE7c129A20",
+      "oracleId": "etherex-cow-linea-usdc-weth-vault"
+    }
+  },
+  {
+    "address": "0x18A04E449869CC9fa08eE5723e0aEf7ACAbA4e72",
+    "lpAddress": "0x7077f0CFF76077D0ebb335B607DB574400510557",
+    "tokens": ["0x176211869cA2b568f2A7D4EE941E073a821EE1ff", "0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f"],
+    "tokenOracleIds": ["USDC", "WETH"],
+    "decimals": [6, 18],
+    "oracleId": "sushi-cow-linea-usdc-weth",
+    "rewardPool": {
+      "address": "0x2bD68841D8908c5A0d904BD232D13Cd741648FB3",
+      "oracleId": "sushi-cow-linea-usdc-weth-rp"
+    }
+  },
+  {
+    "address": "0x0Db58cB843B8AF6A8704338447c0a7e36F4D5613",
+    "lpAddress": "0xa22206521A460aA6B21a089c3b48FFd0C79d5fD5",
+    "tokens": ["0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4", "0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f"],
+    "tokenOracleIds": ["WBTC", "WETH"],
+    "decimals": [8, 18],
+    "oracleId": "oku-linea-weth-wbtc",
+    "rewardPool": {
+      "address": "0x31c0b0ce930797291fAa950B6F3085D2Dd620247",
+      "oracleId": "oku-linea-weth-wbtc-rp"
+    }
+  },
+  {
+    "address": "0x4d6d208e75d800957c4AF83FB9f42AabFEbc6b6D",
+    "lpAddress": "0xc48622190a6B91d64ee7459C62fadE9AbE61b48a",
+    "tokens": ["0x176211869cA2b568f2A7D4EE941E073a821EE1ff", "0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f"],
+    "tokenOracleIds": ["USDC", "WETH"],
+    "decimals": [6, 18],
+    "oracleId": "oku-linea-weth-usdc.e",
+    "rewardPool": {
+      "address": "0x711d9dF7927c9e8083D682824238aC224258a656",
+      "oracleId": "oku-linea-weth-usdc.e-rp"
+    }
+  }
+]
