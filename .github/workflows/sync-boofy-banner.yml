@@ -1,0 +1,20 @@
+name: Sync Boofy Banner
+on:
+  push:
+    paths: ['.github/workflows/sync-boofy-banner.yml']
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p assets
+          curl -fsSL https://raw.githubusercontent.com/Fanl365/Boofy-App/main/assets/boofy-banner.jpg -o assets/boofy-banner.jpg
+          sed -i 's#./assets/boofy-banner.svg#./assets/boofy-banner.jpg#g' README.md readme.md 2>/dev/null || true
+          git config user.name 'Boofy'
+          git config user.email 'fanlong.365@gmail.com'
+          git add assets/boofy-banner.jpg README.md readme.md 2>/dev/null || true
+          git commit -m 'brand: use official Boofy README banner' || exit 0
+          git push
