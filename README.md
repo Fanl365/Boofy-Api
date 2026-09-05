@@ -1,3 +1,5 @@
+<p align="center"><img src="./assets/boofy-banner.svg" width="100%" alt="Boofy — Build · Connect · Grow" /></p>
+
 # Boofy API
 
 Boofy API is the backend data service for the Boofy DeFi project. It aggregates vault metadata, prices, APYs, TVL, chain configuration, and related protocol data for consumption by the Boofy application and other clients.
